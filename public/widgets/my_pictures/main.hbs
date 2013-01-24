@@ -1,0 +1,13 @@
+<header class="bar-title">
+  <h1 class="title">My pictures</h1>
+</header>
+<div class="content">
+  <ul class="list">
+  {{#pictures}}
+  <li>
+    <img src="{{imageUrl id}}"/>
+    <div>Updated at: {{updated_at}}</div> 
+  </li>
+  {{/pictures}}
+  </ul>
+</div>
