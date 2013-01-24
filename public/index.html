@@ -46,11 +46,52 @@
       <header class="bar-title">
         <h1 class="title"> My Friends </h1>
       </header>
-      <div class="content">Display a list of my friends</div>
+      <div class="content">
+      <ul class="list list-with-image">
+      {{#friends}}
+      <li data-hull-action="viewFriend" data-hull-friend-id={{id}}>
+        <a href="#">
+          <div class="glossy">
+            <img src="{{picture}}"/>
+          </div>
+          <h3>{{name}}</h3>
+          <div>
+          <span class="chevron"></span>
+          <span class="count count-positive">
+            {{images.length}} <i class="icon-camera"></i> 
+          </span>
+        </a>
+      </li>
+      {{/friends}}
+      </ul>
+      </div>
     </script>
-
-
-
+  
+    <script type="text/x-template" data-hull-template="identity/identity">
+      {{#if loggedIn}}
+      <header class="bar-title">
+        <h1 class="title">My profile</h1>
+      </header>
+      <div class="content">
+        {{#with me}}
+          <section class="profile-identity pad">
+            <div class='glossy'>
+              <img src="{{ picture}}">
+            </div>
+            <h2>{{name}}</h2>
+          </section>
+        {{/with}}
+        <a class="button-negative button-block" data-hull-action="logout">Logout</a>
+      </div>
+      {{else}}
+        <header class="bar-title">
+          <h1 class="title">Welcome to Hullagram</h1>
+        </header>
+        <div class="content">
+          <a class="button-main button-block" data-hull-provider="facebook" data-hull-action="login">Login</a>
+        </div>
+      {{/if}}
+    </script>
 
 
 

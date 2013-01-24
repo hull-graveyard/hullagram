@@ -1,0 +1,18 @@
+{{#friends}}
+<header class="bar-title">
+  <h1 class="title">
+    {{name}} - {{images.length}} pictures
+  </h1>
+</header>
+<div class="content">
+  <ul class="list inset">
+    <li class="list-divider">
+    Pictures of {{name}}
+    </li>
+    {{#images}}
+    <img src="{{imageUrl id}}"/>
+    {{/images}}
+  </ul>
+</div>
+
+{{/friends}}
