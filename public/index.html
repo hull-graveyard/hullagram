@@ -26,8 +26,24 @@
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
-    <script src="//js.hull.dev/dist/hull.js"></script>
-    <script src="app.js"></script>
+    <!-- 
+      -- Option 1: Run the app with the full build
+      --
+      -- To proceed, uncomment the following line, then comment Option 2
+      --
+      -->
+    <script data-main="app.js" src="//js.hull.dev/dist/0.1.0/hull.js"></script>
+
+
+    <!-- 
+      -- Option 2: Run the app with non-built source files through requireJS
+      --
+      -- To proceed, uncomment the following lines, then comment Option 1
+      --
+      -->
+    <!--script src="app-dev.js"></script>
+    <script src="//js.hull.dev/components/requirejs/require.js"></script>
+    <script src="app.js"></script-->
     
     <!-- build:js application.min.js -->
     <script src="./vendors/js/ratchet/segmented-controllers.js"></script>
