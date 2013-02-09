@@ -53,6 +53,8 @@ First create your heroku app if it's not done yet :
 Build your app for deployement, and commit the compiled version:
 
     grunt build
+    cd dist
+    git init
     git add dist
     git commit -m "Deployment build"
 
