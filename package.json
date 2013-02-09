@@ -1,22 +1,25 @@
 {
+  "author": "Hull",
   "name": "Hullagram",
-  "version": "0.0.0",
-  "description": "A clone of Instagram entirely written with Hull",
+  "version": "0.1.0",
+  "dependencies": {},
   "devDependencies": {
-    "grunt": "~0.4.0rc4",
-    "grunt-contrib-connect": "~0.1.0",
-    "grunt-contrib-watch": "~0.1.4"
-  },
-  "repository": "github.com:hull/hullagram.git",
-  "keywords": [
-    "hull",
-    "Hull.io",
-    "instagram",
-    "hullagram",
-    "photo",
-    "sharing",
-    "social"
-  ],
-  "author": "Xavier Cambar <xavier@hull.io>",
-  "license": "MIT"
+    "grunt": "0.4.0rc7",
+    "grunt-contrib-handlebars" : "0.5.4rc7",
+    "grunt-contrib-copy": "0.4.0rc7",
+    "grunt-contrib-concat": "0.1.2rc6",
+    "grunt-contrib-uglify": "0.1.1rc6",
+    "grunt-contrib-jshint": "0.1.1rc6",
+    "grunt-contrib-mincss": "0.4.0rc7",
+    "grunt-contrib-connect": "0.1.1rc6",
+    "grunt-contrib-clean": "0.4.0rc6",
+    "grunt-contrib-htmlmin": "0.1.1rc7",
+    "grunt-contrib-imagemin": "0.1.1rc8",
+    "grunt-contrib-livereload": "0.1.0rc8",
+    "grunt-bower-hooks": "~0.1.2",
+    "grunt-usemin": "~0.1.4",
+    "grunt-regarde": "~0.1.1",
+    "grunt-open": "~0.1.0",
+    "matchdep": "~0.1.1"
+  }
 }

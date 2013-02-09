@@ -1,0 +1,28 @@
+{{#if comments}}<ul class="list-comments">{{/if}}
+{{#comments}}
+  <li>
+    <div class="author media cf">
+        <div class="img author-picture">
+            <a href="#/profile/{{user.id}}">
+              <img src="{{user.picture}}">
+            </a>
+        </div>
+        <div class="bd author-metas">
+          <time class="author-timestamp float-right">{{fromNow updated_at}}</time>
+            <h3 class="author-title"><a href="#/profile/{{user.id}}">{{user.name}}</a></h3>
+            <div class="author-body">{{description}}</div>
+        </div>
+    </div>
+  </li>
+  {{/comments}}
+{{#if comments}}</ul>{{/if}}
+
+<nav>
+    <form class="post-comment media cf">
+        <a class="button button-main button-block imgExt" data-hull-action="comment">Send</a>
+        <div class="bd">
+          <textarea autofocus="autofocus" placeholder="Write something"></textarea>
+        </div>
+    </form>
+</nav>
+

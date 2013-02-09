@@ -1,1 +1,5 @@
+.DS_Store
+temp
+dist
 node_modules
+app/components

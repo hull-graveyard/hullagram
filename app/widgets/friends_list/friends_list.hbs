@@ -1,0 +1,35 @@
+<header class="bar-title">
+  <h1 class="title">Friends</h1>
+</header>
+<div class="content">
+    {{#if friends}}
+        <ul class="list list-friends">
+            {{#friends}}
+            <li>
+                <a href="#/profile/{{id}}">
+                    <div class="author">
+                        <div class="media cf">
+                            <div class="img author-picture">
+                                <img src="{{picture}}">
+                            </div>
+                            <div class="bd author-metas">
+                                <h3 class="author-title">{{name}}</h3>
+                                <h4 class="author-updated">joined {{fromNow created_at}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="chevron"></span>
+                    <span class="count">
+                      {{stats.images}} <i class="icon-camera"></i>
+                    </span>
+                  </a>
+            </li>
+        {{/friends}}
+    </ul>
+  {{else}}
+    <div class="empty-state">
+      <i>&#9785;</i>
+      <h3>No friends yet</h3>
+    </div>
+  {{/if}}
+</div>

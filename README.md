@@ -1,27 +1,62 @@
 # Hullagram
 
-A clone of Instagram built in HTML with hull.io
+This is a fully contained demo of what you can achieve with hull.
 
-# Requirements
+* Login with Twitter
+* Upload photos
+* Like them
+* Comment on them
+* See what friends of yours use the app
+* Get the public activity feed
+* See what your friends have done
 
-* Your Hull account, with the associated key, secret and URL for hull.js
-* node > 0.8.x
-* grunt 0.4 (used only as a static server, use any other if you like)
+Best of all, it has no server code and barely any Javascript.
+Prepare to be amazed.
 
-# Configure your app
+The steps below are tailored for Mac environments :
+Linux should mostly work the same.
 
-## Dependencies
+## Installing
 
-Run npm install in the root directory of the app
+First, clone this repository :
 
-## public/index.html
+    git clone git://github.com/hull/hullagram.git
 
-You must change the URL to hull.js to point to a live file.
+Install [node.js](http://nodejs.org)
 
-## public/app.js
+[grunt-cli](https://github.com/gruntjs/grunt-cli) as a global module.
+It's amazing so you should do it anyways.
 
-You must change the orgUrl and key
+    [sudo] npm install grunt-cli -g
+    [sudo] npm install bower -g
 
-# Run the app
+then install grunt and it's modules in the project's folder.
 
-You only need to server the public directory withas static files. To do so, we provide a Grunt configuration to help you get started, but you can choose any other server, it's up to you!
+    cd hullagram/
+    npm install
+    bower install
+
+
+
+## Running the app
+
+### To run the app locally, run:
+
+    grunt server
+
+## Deployment
+
+First create your heroku app if it's not done yet :
+
+    heroku create your_amazing_app
+
+Build your app for deployement, and commit the compiled version:
+
+    grunt build
+    git add dist
+    git commit -m "Deployment build"
+
+Deploy your app to heroku:
+
+    git subtree push --prefix dist heroku master
+    open http://your_amazing_app.herokuapp.com

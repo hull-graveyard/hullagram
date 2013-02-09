@@ -1,0 +1,8 @@
+{
+  "name" : "Hullagram",
+  "version" : "0.1.0",
+  "dependencies" : {
+    "ratchet" : "*",
+    "font-awesome" : "*"
+  }
+}
