@@ -1,9 +1,11 @@
 <header class="bar-title">
+  {{#if id}}
   <a class="button-prev" onclick="window.history.back()">Back</a>
-  <h1 class="title">Share</h1>
+  {{else}}
+  <h1 class="title">Feed</h1>
+  {{/if}}
 </header>
-<div class="content" data-hull-id="{{id}}" data-hull-widget="share">
+<div class="content" {{#if id}}data-hull-id="{{id}}"{{/if}} data-hull-widget="pictures">
   <i class="icon-spinner icon-spin loading-spinner"></i>
 </div>
-
 {{> app/nav}}

@@ -1,23 +1,17 @@
-<header class="bar-title">
-  <h1 class="title">Likes</h1>
-</header>
-<div class="content">
 
-  {{#if pictures}}
-    <ul class="list-grid cf">
-    {{#pictures}}
-        <li>
-            <a href="#/picture/{{id}}">
-                <img src="{{imageUrl id "square"}}"  />
-            </a>
-        </li>
-    {{/pictures}}
-    </ul>
-  {{else}}
-    <div class="empty-state">
-      <i>&#9785;</i>
-      <h3>No photos yet</h3>
-    </div>
-  {{/if}}
-
-</div>
+{{#if pictures}}
+  <ul class="list-grid cf">
+  {{#pictures}}
+      <li>
+          <a href="#/pictures/{{id}}">
+              <img src="{{imageUrl id "square"}}"  />
+          </a>
+      </li>
+  {{/pictures}}
+  </ul>
+{{else}}
+  <div class="empty-state">
+    <i>&#9785;</i>
+    <h3>No photos yet</h3>
+  </div>
+{{/if}}

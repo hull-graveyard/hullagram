@@ -6,7 +6,7 @@ This is a fully contained demo of what you can achieve with hull.
 * Upload photos
 * Like them
 * Comment on them
-* See what friends of yours use the app
+* List you Twitter friends who also use the app
 * Get the public activity feed
 * See what your friends have done
 
@@ -35,8 +35,6 @@ then install grunt and it's modules in the project's folder.
     cd hullagram/
     npm install
     bower install
-
-
 
 ## Running the app
 

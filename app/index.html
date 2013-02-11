@@ -24,20 +24,29 @@
   </head>
   <body>
 
-    <!-- Add your site or application content here -->
-    <div data-hull-id="app" data-hull-widget="main">
+    <div data-hull-id="app" data-hull-widget="hullagram">
       <i class="icon-spinner icon-spin loading-spinner"></i>
     </div>
-    <div data-hull-widget="helpers"></div>
+
+    <div data-hull-widget="uploader"></div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+
     <script src="//hull-js.s3.amazonaws.com/0.1.0/hull.js"></script>
+
 
     <!-- build:js application.js -->
     <script src="scripts/templates.js"></script>
     <script src="scripts/widgets.js"></script>
-    <script src="scripts/main.js"></script>
     <!-- endbuild -->
+
+    <script type='text/javascript'>
+    var app = Hull.init({
+      appId: '5103a56f93e74e3a1f000012',
+      orgUrl: 'http://hull-demos.alpha.hullapp.io'
+    });
+    </script>
 
   </body>
 </html>

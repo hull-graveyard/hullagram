@@ -1,25 +1,19 @@
-<header class="bar-title">
-  <a class="button-prev" onclick="window.history.back()">Back</a>
-  <h1 class="title">Share</h1>
-</header>
-<div class="content">
-  {{#pictures}}
-    <div class="share-picture">
+{{#pictures}}
+  <div class="share-picture">
 
-      <div class="media">
-        <div class="img">
-          <img src="{{imageUrl id "square"}}" alt="">
-        </div>
-        <div class="bd">
-          <textarea id="share-description" rows="3" placeholder="Write something">{{description}}</textarea>
-        </div>
+    <div class="media">
+      <div class="img">
+        <img src="{{imageUrl id "square"}}" alt="">
       </div>
-
-      <a class="button button-block button-share" data-hull-action="share" data-hull-network="twitter" data-hull-source-url="{{imageUrl id "original"}}">
-        <i class="icon-twitter"></i>
-        Share on Twitter
-      </a>
-
+      <div class="bd">
+        <textarea id="share-description" rows="3" placeholder="Write something">{{description}}</textarea>
+      </div>
     </div>
-  {{/pictures}}
-</div>
+
+    <a class="button button-block button-share" data-hull-action="share" data-hull-network="twitter" data-hull-source-url="{{imageUrl id "medium"}}">
+      <i class="icon-twitter"></i>
+      Share on Twitter
+    </a>
+
+  </div>
+{{/pictures}}

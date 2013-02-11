@@ -1,60 +1,49 @@
 /*global Hull:true, _:true, Backbone:true, app:true */
 Hull.widget('app', {
-  templates: ["feed","share","comment","picture","likes", "new_picture", "friends", "profile"],
+  templates: ["pictures", "share", "comments", "likes", "new_picture", "friends", "users", "profile", "nav"],
 
   initialize: function () {
-    "use strict";
+
     this.initRouter();
+
+    this.sandbox.on('hullagram.newPicture', _.bind(function(pic) {
+      this.render('new_picture', pic);
+    }, this));
+
   },
 
-  initRouter: function () {
+  initRouter: function() {
     var HullagramRouter = Backbone.Router.extend({
       routes: {
-        'feed': 'feed',
-        'likes': 'likes',
-        'camera' : 'camera',
-        'friends': 'friends',
-        'profile': 'profile',
-        'profile/:id': 'profile',
-        'comments/:id': 'comments',
-        "picture/:id": "picture",
-        "share/:id": "share"
+        ':view(/:id)(/:action)' : 'view'
       }
     });
 
-    app.router = new HullagramRouter();
-    app.router.on('route:feed', function () {
-      this.render('feed');
-    }.bind(this));
+    router = new HullagramRouter();
 
-    app.router.on('route:likes', function () {
-      this.render('likes');
-    }.bind(this));
+    router.on('route:view', _.bind(function(view, id, action) {
+      var tpl = action || view || 'pictures';
+      if (!_.include(this.templates, tpl)) {
+        tpl = 'pictures';
+      }
+      this.currentView = tpl;
+      this.render(tpl, { id: id });
+    }, this));
 
-    app.router.on('route:picture', function (id) {
-      this.render('picture', {id: id});
-    }.bind(this));
+    this.sandbox.on('hullagram.route', function(route) {
+      router.navigate(route, { trigger: true });
+    });
 
-    app.router.on('route:share', function (id) {
-      this.render('share', {id: id});
-    }.bind(this));
+  },
 
-    app.router.on('route:camera', function (data) {
-      this.render('new_picture', data);
-    }.bind(this));
+  beforeRender: function(data) {
+    data.currentView = this.currentView;
+    return data;
+  },
 
-    app.router.on('route:friends', function () {
-      this.render('friends');
-    }.bind(this));
-
-    app.router.on('route:comments', function (id) {
-      this.render('comment', {id: id});
-    }.bind(this));
-
-    app.router.on('route:profile', function (id) {
-      this.render('profile', {id: id || 'me'});
-    }.bind(this));
-
+  afterRender: function() {
+    var tab = this.$el.find("li.tab-item." + this.currentView)
+    tab.addClass("active");
   }
 });
 
@@ -67,7 +56,7 @@ Hull.widget('app', {
 
 /*global Hull:true */
 Hull.widget('comment', {
-  templates: ['main'],
+  templates: ['main', 'likes'],
   datasources: {
     likes: ':id/likes'
   },
@@ -78,78 +67,15 @@ Hull.widget('comment', {
 
 
 
-//--------
-
-
-/*global Hull:true */
-Hull.widget('feed', function() {
-  var activity;
-  return {
-    templates: ['main'],
-    datasources: {
-      activity: function() {
-        if (activity) {
-          return activity;
-        } else {
-          return this.api('hull/app/activity', {
-            limit: 10,
-            where: { obj_type: 'Image', verb: 'create' },
-            order_by: 'created_at DESC'
-          });
-        }
-      }
-    },
-    beforeRender: function (data) {
-      activity = data.activity;
-      data.pictures = _.pluck(data.activity, 'object');
-    },
-    actions: {
-      route: function (elt, evt, data) {
-        evt.stopPropagation();
-        this.sandbox.emit("hullagram.route", data.route, data);
-      }
-    }
-  };
-});
-
-
-
-
 
 //--------
 
 
-Hull.widget('friends_list', {
-  templates: ['friends_list', 'friend'],
-  datasources: {
-    friends: "me/friends"
-  },
-
-  actions: {
-    backToFriendsList: function (elt, evt, data) {
-      evt.stopPropagation();
-      this.render('friends_list');
-    }
-  }
-});
-
-
-
-
-//--------
-
-
-// This widget holds as a placeholder for partials, as Hull does not provide
-// (to my knowledge) automatic registration for partials
-// @TODO Integrate directly wihin Hull, with a correct syntax
-Hull.widget('helpers', {
-  templates: ['empty', 'likes', 'picture_view','notice'],
-
-  beforeRender: function () {
-    this.templates.forEach(function (tpl) {
-      Handlebars.registerPartial('helpers.' + tpl, Hull.templates['helpers/' + tpl]);
-    });
-  }
+//@TODO Provide a method to do a textual selection of the template to be rendered (before Widget::render)
+Hull.widget('hullagram', {
+  templates: ["main"],
+  // Refresh all on me.change : ie when logged in or out
+  refreshEvents: ['model.hull.me.change']
 });
 
 
@@ -187,135 +113,28 @@ Hull.widget('likes', {
 //--------
 
 
-/*global Hull:true */
-
-//@TODO Provide a method to do a textual selection of the template to be rendered (before Widget::render)
-Hull.widget('main', {
-  templates: ["main"]
-});
-
-
-
-
-//--------
-
-
-/*global Hull:true, app:true */
-
-Hull.widget('nav', {
-  templates: ["nav"],
-
-  initialize: function () {
-
-    // Upload send
-    this.sandbox.on('hull.upload.send', function () {
-      // Display a message during the upload
-      this.$el.find('.notification')
-        .attr('class', 'notification active fadeIn')
-        .find('i').attr('class', 'icon-spinner icon-spin').end()
-        .find('p').text('Uploading');
-    }.bind(this));
-
-    // Upload done
-    this.sandbox.on('hull.upload.done', function (files) {
-      _.map(files, function (file) {
-        if (file.type && file.type.split("/")[0] === "image") {
-
-          // Create the thumbnail/preview
-          var img = document.createElement("img");
-          var reader = new FileReader();
-          reader.onload = function(e) {
-
-            // Hide the notification message
-            this.$el
-              .find('.notification')
-              .attr('class', 'notification active fadeOut animation-delay')
-              .one('animationend webkitAnimationEnd', function() {
-                // Highlight camera icon
-                this.selectCurrent( this.$el.find('[data-route="camera"]') );
-
-                // Redirect to the camera page
-                app.router.trigger('route:camera', {
-                  source_url: file.url,
-                  name: file.name,
-                  blob: e.target.result // Thumbnail
-                });
-
-              }.bind(this))
-              .find('i').attr('class', 'icon-spinner icon-spin').end()
-              .find('p').text('Uploading');
-
-          }.bind(this);
-          reader.readAsDataURL(file);
-
-        }
-      }.bind(this));
-    }.bind(this));
-
-  },
-
-  selectCurrent: function (elt) {
-    this.$el.find("li.tab-item").removeClass("active");
-    elt.addClass("active");
-  },
-
-  actions: {
-    route: function (elt, evt, data) {
-      evt.stopPropagation();
-      if(data.route !== 'camera') {
-        this.selectCurrent(elt);
-      }
-    }
-  }
-});
-
-
-
-
-
-//--------
-
-
-/*global Hull:true _:true */
 Hull.widget('new_picture', {
   templates: ['main'],
 
-  initialize: function () {
-    "use strict";
-  },
   beforeRender: function (data) {
     data.source_url = this.options.source_url;
     data.blob = this.options.blob;
   },
-  afterRender: function () {
-    this.$notification = this.$el.find('.notification');
-  },
 
   actions: {
     send: function (elt, evt, data) {
-      evt.stopPropagation();
       elt.addClass('disabled-state');
       var textarea = document.getElementById('picture-description');
 
-      this.$notification
-        .attr('class', 'notification active fadeIn')
-        .find('i').attr('class', 'icon-spinner icon-spin').end()
-        .find('p').text('Sending');
+      this.sandbox.emit('hullagram.savingPicture');
 
       this.api.post('/me/images', {
         description: textarea.value,
         source_url: this.options.source_url,
         name: this.options.name
       }).then(function (image) {
-          this.sandbox.emit('hullagram.picture.new', image);
-          this.$notification
-            .attr('class', 'notification active fadeOut animation-delay-long')
-            .one('animationend webkitAnimationEnd', function(){
-              app.router.trigger('route:picture', image.id);
-            }.bind(this))
-            .find('i').attr('class', 'icon-cloud-upload').end()
-            .find('p').text('Sent');
-        }.bind(this));
+        this.sandbox.emit('hullagram.pictureSaved', image);
+      }.bind(this));
     }
   }
 });
@@ -327,14 +146,44 @@ Hull.widget('new_picture', {
 
 
 /*global Hull:true */
-Hull.widget('picture', {
-  templates: ['main'],
+Hull.widget('pictures', {
+  templates: ['main', 'picture', 'likes'],
   datasources: {
-    pictures: ':id',
-    likes: ':id/likes'
+    activity: function() {
+      var where = { obj_type: 'Image', verb: 'create' };
+
+      if (this.options.user_id) {
+        where.actor_id = this.options.user_id;
+      }
+
+      if (this.options.id) {
+        where.obj_id = this.options.id;
+      }
+
+      return this.api('hull/app/activity', {
+        limit: 10,
+        where: where,
+        order_by: 'created_at DESC'
+      });
+    },
+    likes: function() {
+      if (this.options.id) {
+        return this.api('hull/' + this.options.id + '/likes');
+      }
+    }
   },
+
+
   beforeRender: function (data) {
-    data.comment_id = this.options.id;
+    if (this.options.id) {
+      data.single_picture_id = this.options.id;
+    }
+    data.pictures = _.pluck(data.activity, 'object');
+  },
+  actions: {
+    route: function (elt, evt, data) {
+      this.sandbox.emit("hullagram.route", data.route, data);
+    }
   }
 });
 
@@ -352,20 +201,17 @@ Hull.widget('profile', {
 
   datasources: {
     user:     ':id',
-    friends:  ':id/friends',
-    pictures: ':id/images',
-    likes:    ':id/liked'
+    friends:  ':id/friends'
+  },
+
+  initialize: function() {
+    this.options.id = this.options.id || 'me';
   },
 
   beforeRender: function (data) {
     data.isMe = data.user.id === data.me.id;
-  },
-
-  actions: {
-    route: function (elt, evt, data) {
-      this.sandbox.emit("hullagram.route", data.route, data);
-    }
   }
+
 });
 
 
@@ -381,9 +227,13 @@ Hull.widget('share', {
   datasources: {
     pictures: ':id'
   },
+
+  beforeRender: function(data) {
+    console.warn("Share Data", data);
+  },
+
   actions: {
     share: function (elt, evt, data) {
-      evt.stopPropagation();
       // Temporary
       var textarea = document.getElementById('share-description'),
           description = textarea.value,
@@ -394,3 +244,79 @@ Hull.widget('share', {
   }
 });
 
+
+
+
+
+//--------
+
+
+Hull.widget('uploader', {
+
+  templates: ['uploader'],
+
+  initialize: function() {
+    this.sandbox.on('hull.upload.send', _.bind(this.onUploadSend, this));
+    this.sandbox.on('hull.upload.done', _.bind(this.onUploadDone, this));
+    this.sandbox.on('hullagram.pictureSaved', _.bind(this.onPictureSaved, this));
+    this.sandbox.on('hullagram.savingPicture', _.bind(this.onSavingPicture, this));
+  },
+
+  afterRender: function() {
+    this.$notification = this.$el.find('.notification');
+  },
+
+  onUploadSend: function() {
+    // Display a message during the upload
+    this.$notification
+      .attr('class', 'notification active fadeIn')
+      .find('i').attr('class', 'icon-spinner icon-spin').end()
+      .find('p').text('Uploading');
+  },
+
+  onPictureSaved: function(picture) {
+    this.$notification
+      .attr('class', 'notification active fadeOut animation-delay-long')
+      .one('animationend webkitAnimationEnd', function(){
+        // app.router.trigger('route:picture', picture.id);
+        this.sandbox.emit('hullagram.route', '/pictures/' + picture.id);
+      }.bind(this))
+      .find('i').attr('class', 'icon-cloud-upload').end()
+      .find('p').text('Sent');
+  },
+
+  onSavingPicture: function() {
+    this.$notification
+        .attr('class', 'notification active fadeIn')
+        .find('i').attr('class', 'icon-spinner icon-spin').end()
+        .find('p').text('Sending');
+  },
+
+  onUploadDone: function (files) {
+    var file = files[0];
+    if (file.type && file.type.split("/")[0] === "image") {
+      // Create the thumbnail/preview
+      var img = document.createElement("img");
+      var reader = new FileReader();
+      reader.onload = _.bind(function(e) {
+        // Hide the notification message
+        this.$notification
+          .attr('class', 'notification active fadeOut animation-delay')
+          .one('animationend webkitAnimationEnd', function() {
+            // Redirect to the camera page
+            this.sandbox.emit('hullagram.newPicture', {
+              source_url: file.url,
+              name: file.name,
+              blob: e.target.result // Thumbnail
+            });
+
+          }.bind(this))
+          .find('i').attr('class', 'icon-spinner icon-spin').end()
+          .find('p').text('Uploading');
+
+      }, this);
+      reader.readAsDataURL(file);
+    }
+  }
+
+});

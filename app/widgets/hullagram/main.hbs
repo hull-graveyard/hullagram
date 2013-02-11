@@ -1,3 +1,7 @@
+{{#if loggedIn}}
+<div data-hull-widget="app"></div>
+{{else}}
+
 <section class="login">
   <div class="login-center">
     <h1 class="logo">Hullagram</h1>
@@ -9,3 +13,5 @@
     </a>
   </div>
 </section>
+
+{{/if}}

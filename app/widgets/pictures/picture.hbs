@@ -2,12 +2,12 @@
   <div class="author">
     <div class="media cf">
       <div class="img author-picture">
-        <a href="#/profile/{{actor.id}}">
+        <a href="#/users/{{actor.id}}">
           <img src="{{actor.picture}}">
         </a>
       </div>
       <div class="bd author-metas">
-        <a href="#/profile/{{actor.id}}">
+        <a href="#/users/{{actor.id}}">
           <h3 class="author-title">{{actor.name}}</h3>
         </a>
         <time class="author-timestamp">{{fromNow created_at}}</time>
@@ -23,7 +23,7 @@
     </div>
   {{/if}}
   <div class="list-actions cf">
-    <a href="#/comments/{{id}}" class="stat">
+    <a href="#/pictures/{{id}}/comments" class="stat">
       <i class="icon-comment"></i>
         {{#if stats.comments}}
           {{stats.comments}}
@@ -33,11 +33,11 @@
     </a>
     <span data-hull-widget="like_button@hull" data-hull-id="{{id}}" data-hull-likes-count="{{stats.likes}}"></span>
     &middot;
-    <a href="#/comments/{{id}}" class="action">
+    <a href="#/pictures/{{id}}/comments" class="action">
       Comment
     </a>
     &middot;
-    <a href="#/share/{{id}}" class="action">
+    <a href="#/pictures/{{id}}/share" class="action">
       Share
     </a>
   </div>

@@ -1,6 +1,6 @@
 /*global Hull:true */
 Hull.widget('comment', {
-  templates: ['main'],
+  templates: ['main', 'likes'],
   datasources: {
     likes: ':id/likes'
   },

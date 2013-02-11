@@ -5,19 +5,16 @@ Hull.widget('profile', {
 
   datasources: {
     user:     ':id',
-    friends:  ':id/friends',
-    pictures: ':id/images',
-    likes:    ':id/liked'
+    friends:  ':id/friends'
+  },
+
+  initialize: function() {
+    this.options.id = this.options.id || 'me';
   },
 
   beforeRender: function (data) {
     data.isMe = data.user.id === data.me.id;
-  },
-
-  actions: {
-    route: function (elt, evt, data) {
-      this.sandbox.emit("hullagram.route", data.route, data);
-    }
   }
+
 });
 

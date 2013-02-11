@@ -1,52 +1,31 @@
-<header class="bar-title">
-{{#unless isMe}}
-<a class="button-prev" onclick="window.history.back()">Back</a>
-{{/unless}}
-<h1 class="title">{{user.name}}</h1>
-{{#if isMe}}
-<a class="button" data-hull-action="logout">Logout</a>
-{{/if}}
-</header>
-<div class="content">
-  <div class="profile island">
-    <div class="author">
-        <div class="media cf">
-            <div class="img author-picture">
-                <img src="{{user.picture}}">
-            </div>
-            <div class="bd author-metas">
-                <h3 class="author-title">{{user.name}}</h3>
-                <h4 class="author-location">Paris, France</h4>
-                <h4 class="author-updated">{{fromNow user.updated_at}}</h4>
-            </div>
-        </div>
+<div class="profile island">
+  <div class="author">
+    <div class="media cf">
+      <div class="img author-picture">
+        <img src="{{user.picture}}">
+      </div>
+      <div class="bd author-metas">
+        <h3 class="author-title">{{user.name}}</h3>
+        <h4 class="author-location">Paris, France</h4>
+        <h4 class="author-updated">{{fromNow user.created_at}}</h4>
+      </div>
     </div>
-    <ul class="profile-stats cf">
-      <li>
-        <strong>{{pictures.length}}</strong>
-        <small>Photos</small>
-      </li>
-      <li>
-        <strong>{{friends.length}}</strong>
-        <small>Friends</small>
-      </li>
-      <li>
-        <strong>{{likes.length}}</strong>
-        <small>Likes</small>
-      </li>
-    </ul>
   </div>
-  {{#if pictures}}
-    <h3 class="heading-body">Latest Pictures</h3>
-    <ul class="list-pictures">
-      {{#pictures}}
-      {{> helpers.picture_view}}
-      {{/pictures}}
-    </ul>
-  {{else}}
-    <div class="empty-state">
-      <i>&#9785;</i>
-      <h3>No photos yet</h3>
-    </div>
-  {{/if}}
+  <ul class="profile-stats cf">
+    <li>
+      <strong>{{user.stats.images}}</strong>
+      <small>Photos</small>
+    </li>
+    <li>
+      <strong>{{friends.length}}</strong>
+      <small>Friends</small>
+    </li>
+    <li>
+      <strong>{{user.stats.liked}}</strong>
+      <small>Likes</small>
+    </li>
+  </ul>
 </div>
+
+<h3 class="heading-body">Latest Pictures</h3>
+<div data-hull-widget='pictures' data-hull-user-id="{{user.id}}"></div>

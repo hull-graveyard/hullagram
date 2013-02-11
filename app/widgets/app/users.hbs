@@ -1,0 +1,14 @@
+<header class="bar-title">
+  {{#ifEqual currentView "users"}}
+  <a class="button-prev" onclick="window.history.back()">Back</a>
+  {{else}}
+  <h1 class="title">My Profile</h1>
+  <a class="button" data-hull-action="logout">Logout</a>
+  {{/ifEqual}}
+</header>
+
+<div class="content" data-hull-id="{{id}}" data-hull-widget="profile">
+  <i class="icon-spinner icon-spin loading-spinner"></i>
+</div>
+
+{{> app/nav}}

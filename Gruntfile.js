@@ -19,10 +19,6 @@ module.exports = function (grunt) {
   grunt.initConfig({
     yeoman: yeomanConfig,
 
-    bower: {
-      rjsConfig: 'app/scripts/main.js'
-    },
-
     open: {
       server: {
         url: 'http://localhost:<%= connect.livereload.options.port %>'

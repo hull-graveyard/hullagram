@@ -1,7 +1,7 @@
 <div class="list-likes media cf">
     <i class="icon-heart img"></i>
     <div class="bd">
-        {{#csv likes}}<a href="#/profile/{{user.id}}">{{user.name}}</a>{{/csv}}
+        {{#join likes lastSep=" and "}}<a href="#/users/{{user.id}}">{{user.name}}</a>{{/join}}
         like this.
     </div>
 </div>

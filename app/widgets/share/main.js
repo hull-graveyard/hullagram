@@ -4,9 +4,13 @@ Hull.widget('share', {
   datasources: {
     pictures: ':id'
   },
+
+  beforeRender: function(data) {
+    console.warn("Share Data", data);
+  },
+
   actions: {
     share: function (elt, evt, data) {
-      evt.stopPropagation();
       // Temporary
       var textarea = document.getElementById('share-description'),
           description = textarea.value,

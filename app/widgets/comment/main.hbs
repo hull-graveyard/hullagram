@@ -1,10 +1,4 @@
-<header class="bar-title">
-  <a class="button-prev" onclick="window.history.back()">Back</a>
-  <h1 class="title">Comments</h1>
-</header>
-<div class="content">
-  {{#if likes}}
-    {{> helpers.likes}}
-  {{/if}}
-  <div data-hull-id="{{comment_id}}" data-hull-widget="comments@hull"></div>
-</div>
+{{#if likes}}
+  {{> comment/likes}}
+{{/if}}
+<div data-hull-id="{{comment_id}}" data-hull-widget="comments@hull"></div>

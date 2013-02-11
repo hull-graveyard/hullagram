@@ -1,0 +1,18 @@
+{{#if pictures}}
+<ul class="list-pictures">
+{{#pictures}}
+  {{> pictures/picture}}
+{{/pictures}}
+</ul>
+
+{{#if single_picture_id}}
+  {{> pictures/likes}}
+  <div data-hull-id="{{single_picture_id}}" data-hull-widget="comments@hull" class="hull-comments-embed"></div>
+{{/if}}
+
+{{else}}
+<div class="empty-state">
+  <i>&#9785;</i>
+  <h3>No photos yet</h3>
+</div>
+{{/if}}
