@@ -22,7 +22,7 @@ First, clone this repository :
 
     git clone git://github.com/hull/hullagram.git
 
-Install [node.js](http://nodejs.org)
+Install [node.js](http://nodejs.org) (Only used for building the app, not needed for deployment)
 
 [grunt-cli](https://github.com/gruntjs/grunt-cli) as a global module.
 It's amazing so you should do it anyways.
