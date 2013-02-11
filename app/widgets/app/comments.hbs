@@ -2,7 +2,14 @@
   <a class="button-prev" onclick="window.history.back()">Back</a>
   <h1 class="title">Comments</h1>
 </header>
+
+{{!
+  The content is delegated to the 'commment' widget.
+  The id here is the id of a picture.
+}}
+
 <div class="content" data-hull-id="{{id}}" data-hull-widget="comment">
   <i class="icon-spinner icon-spin loading-spinner"></i>
 </div>
+
 {{> app/nav}}

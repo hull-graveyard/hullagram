@@ -1,11 +1,25 @@
+{{!
+  This template is used to display the current user profile
+  on the '/profile' route
+  or another user profile on the '/users/:user_id' routes
+}}
+
 <header class="bar-title">
   {{#ifEqual currentView "users"}}
+  {{! If the profile displayed... is NOT mine, we add a Back button }}
   <a class="button-prev" onclick="window.history.back()">Back</a>
   {{else}}
+  {{! If the profile displayed... is mine, we add a logout button }}
   <h1 class="title">My Profile</h1>
   <a class="button" data-hull-action="logout">Logout</a>
   {{/ifEqual}}
 </header>
+
+{{!
+  The content is delegated to the 'profile' widget.
+  If an id is specified is the id of a specific user
+  This is used in the routes of the form : /users/:user_id
+}}
 
 <div class="content" data-hull-id="{{id}}" data-hull-widget="profile">
   <i class="icon-spinner icon-spin loading-spinner"></i>

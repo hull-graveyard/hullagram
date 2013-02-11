@@ -6,11 +6,12 @@ this["Hull"]["templates"]["app/comments"] = Handlebars.template(function (Handle
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 
-  buffer += "<header class=\"bar-title\">\n  <a class=\"button-prev\" onclick=\"window.history.back()\">Back</a>\n  <h1 class=\"title\">Comments</h1>\n</header>\n<div class=\"content\" data-hull-id=\"";
+  buffer += "<header class=\"bar-title\">\n  <a class=\"button-prev\" onclick=\"window.history.back()\">Back</a>\n  <h1 class=\"title\">Comments</h1>\n</header>\n\n";
+  buffer += "\n\n<div class=\"content\" data-hull-id=\"";
   foundHelper = helpers.id;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\" data-hull-widget=\"comment\">\n  <i class=\"icon-spinner icon-spin loading-spinner\"></i>\n</div>\n";
+  buffer += escapeExpression(stack1) + "\" data-hull-widget=\"comment\">\n  <i class=\"icon-spinner icon-spin loading-spinner\"></i>\n</div>\n\n";
   stack1 = depth0;
   stack1 = self.invokePartial(partials['app/nav'], 'app/nav', stack1, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -22,7 +23,8 @@ this["Hull"]["templates"]["app/friends"] = Handlebars.template(function (Handleb
   var buffer = "", stack1, self=this;
 
 
-  buffer += "<header class=\"bar-title\">\n  <h1 class=\"title\">Friends</h1>\n</header>\n<div class=\"content\" data-hull-widget=\"friends_list@hull\">\n  <i class=\"icon-spinner icon-spin loading-spinner\"></i>\n</div>\n";
+  buffer += "<header class=\"bar-title\">\n  <h1 class=\"title\">Friends</h1>\n</header>\n\n";
+  buffer += "\n\n<div class=\"content\" data-hull-widget=\"friends_list@hull\">\n  <i class=\"icon-spinner icon-spin loading-spinner\"></i>\n</div>\n\n";
   stack1 = depth0;
   stack1 = self.invokePartial(partials['app/nav'], 'app/nav', stack1, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -34,7 +36,8 @@ this["Hull"]["templates"]["app/likes"] = Handlebars.template(function (Handlebar
   var buffer = "", stack1, self=this;
 
 
-  buffer += "<header class=\"bar-title\">\n  <h1 class=\"title\">Likes</h1>\n</header>\n<div class=\"content\"  data-hull-widget=\"likes\">\n  <i class=\"icon-spinner icon-spin loading-spinner\"></i>\n</div>\n";
+  buffer += "<header class=\"bar-title\">\n  <h1 class=\"title\">Likes</h1>\n</header>\n\n";
+  buffer += "\n<div class=\"content\" data-hull-widget=\"likes\">\n  <i class=\"icon-spinner icon-spin loading-spinner\"></i>\n</div>\n\n";
   stack1 = depth0;
   stack1 = self.invokePartial(partials['app/nav'], 'app/nav', stack1, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -97,12 +100,14 @@ function program5(depth0,data) {
   stack2 = {};
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</header>\n<div class=\"content\" ";
+  buffer += "\n</header>\n\n";
+  buffer += "\n\n<div class=\"content\" ";
   stack1 = depth0.id;
   stack2 = {};
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(5, program5, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " data-hull-widget=\"pictures\">\n  <i class=\"icon-spinner icon-spin loading-spinner\"></i>\n</div>\n";
+  buffer += " data-hull-widget=\"pictures\">\n  <i class=\"icon-spinner icon-spin loading-spinner\"></i>\n</div>\n\n";
+  buffer += "\n\n";
   stack1 = depth0;
   stack1 = self.invokePartial(partials['app/nav'], 'app/nav', stack1, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -142,21 +147,26 @@ this["Hull"]["templates"]["app/users"] = Handlebars.template(function (Handlebar
 
 function program1(depth0,data) {
   
-  
-  return "\n  <a class=\"button-prev\" onclick=\"window.history.back()\">Back</a>\n  ";}
+  var buffer = "";
+  buffer += "\n  ";
+  buffer += "\n  <a class=\"button-prev\" onclick=\"window.history.back()\">Back</a>\n  ";
+  return buffer;}
 
 function program3(depth0,data) {
   
-  
-  return "\n  <h1 class=\"title\">My Profile</h1>\n  <a class=\"button\" data-hull-action=\"logout\">Logout</a>\n  ";}
+  var buffer = "";
+  buffer += "\n  ";
+  buffer += "\n  <h1 class=\"title\">My Profile</h1>\n  <a class=\"button\" data-hull-action=\"logout\">Logout</a>\n  ";
+  return buffer;}
 
-  buffer += "<header class=\"bar-title\">\n  ";
+  buffer += "\n\n<header class=\"bar-title\">\n  ";
   stack1 = depth0.currentView;
   stack2 = {};
   foundHelper = helpers.ifEqual;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, "users", {hash:stack2,inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}) : helperMissing.call(depth0, "ifEqual", stack1, "users", {hash:stack2,inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</header>\n\n<div class=\"content\" data-hull-id=\"";
+  buffer += "\n</header>\n\n";
+  buffer += "\n\n<div class=\"content\" data-hull-id=\"";
   foundHelper = helpers.id;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
@@ -167,11 +177,23 @@ function program3(depth0,data) {
   buffer += "\n";
   return buffer;});
 
-this["Hull"]["templates"]["comment/likes"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["Hull"]["templates"]["comment/main"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, stack2, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data) {
+  
+  var buffer = "", stack1, stack2, foundHelper;
+  buffer += "\n  <div class=\"list-likes media cf\">\n    <i class=\"icon-heart img\"></i>\n    <div class=\"bd\">\n        ";
+  stack1 = depth0.likes;
+  stack2 = {};
+  stack2['lastSep'] = " and ";
+  foundHelper = helpers.join;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(2, program2, data),data:data}) : helperMissing.call(depth0, "join", stack1, {hash:stack2,inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        like this.\n    </div>\n  </div>\n";
+  return buffer;}
+function program2(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "<a href=\"#/users/";
@@ -185,38 +207,14 @@ function program1(depth0,data) {
   buffer += escapeExpression(stack1) + "</a>";
   return buffer;}
 
-  buffer += "<div class=\"list-likes media cf\">\n    <i class=\"icon-heart img\"></i>\n    <div class=\"bd\">\n        ";
-  stack1 = depth0.likes;
-  stack2 = {};
-  stack2['lastSep'] = " and ";
-  foundHelper = helpers.join;
-  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(1, program1, data),data:data}) : helperMissing.call(depth0, "join", stack1, {hash:stack2,inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        like this.\n    </div>\n</div>\n";
-  return buffer;});
-
-this["Hull"]["templates"]["comment/main"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers; partials = partials || Handlebars.partials; data = data || {};
-  var buffer = "", stack1, stack2, foundHelper, self=this, functionType="function", escapeExpression=this.escapeExpression;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n  ";
-  stack1 = depth0;
-  stack1 = self.invokePartial(partials['comment/likes'], 'comment/likes', stack1, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n";
-  return buffer;}
-
   stack1 = depth0.likes;
   stack2 = {};
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n<div data-hull-id=\"";
-  foundHelper = helpers.comment_id;
+  buffer += "\n\n<div data-hull-id=\"";
+  foundHelper = helpers.picture_id;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.comment_id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  else { stack1 = depth0.picture_id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1) + "\" data-hull-widget=\"comments@hull\"></div>\n";
   return buffer;});
 
@@ -265,6 +263,7 @@ function program5(depth0,data) {
   
   return "</ul>";}
 
+  buffer += "\n\n";
   stack1 = depth0.comments;
   stack2 = {};
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(1, program1, data),data:data});
@@ -332,6 +331,7 @@ function program4(depth0,data) {
   
   return "\n  <div class=\"empty-state\">\n    <i>&#9785;</i>\n    <h3>No friends yet</h3>\n  </div>\n";}
 
+  buffer += "\n\n\n";
   stack1 = depth0.friends;
   stack2 = {};
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(4, program4, data),fn:self.program(1, program1, data),data:data});
@@ -346,7 +346,7 @@ this["Hull"]["templates"]["hullagram/main"] = Handlebars.template(function (Hand
 function program1(depth0,data) {
   
   
-  return "\n<div data-hull-widget=\"app\"></div>\n";}
+  return "\n\n<div data-hull-widget=\"app\"></div>\n\n";}
 
 function program3(depth0,data) {
   
@@ -457,7 +457,6 @@ function program4(depth0,data) {
   
   return "\n  <div class=\"empty-state\">\n    <i>&#9785;</i>\n    <h3>No photos yet</h3>\n  </div>\n";}
 
-  buffer += "\n";
   stack1 = depth0.pictures;
   stack2 = {};
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(4, program4, data),fn:self.program(1, program1, data),data:data});
@@ -660,17 +659,19 @@ this["Hull"]["templates"]["profile/main"] = Handlebars.template(function (Handle
   stack1 = depth0.user;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.picture;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "\">\n      </div>\n      <div class=\"bd author-metas\">\n        <h3 class=\"author-title\">";
+  buffer += escapeExpression(stack1) + "\">\n      </div>\n      <div class=\"bd author-metas\">\n\n        <h3 class=\"author-title\">";
   stack1 = depth0.user;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.name;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</h3>\n        <h4 class=\"author-location\">Paris, France</h4>\n        <h4 class=\"author-updated\">";
+  buffer += escapeExpression(stack1) + "</h3>\n\n        ";
+  buffer += "\n        <h4 class=\"author-location\">Paris, France</h4>\n\n        ";
+  buffer += "\n        <h4 class=\"author-updated\">";
   stack1 = depth0.user;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.created_at;
   stack2 = {};
   foundHelper = helpers.fromNow;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,data:data}) : helperMissing.call(depth0, "fromNow", stack1, {hash:stack2,data:data});
-  buffer += escapeExpression(stack1) + "</h4>\n      </div>\n    </div>\n  </div>\n  <ul class=\"profile-stats cf\">\n    <li>\n      <strong>";
+  buffer += escapeExpression(stack1) + "</h4>\n\n      </div>\n    </div>\n  </div>\n  <ul class=\"profile-stats cf\">\n    <li>\n      <strong>";
   stack1 = depth0.user;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.stats;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.images;
@@ -684,7 +685,8 @@ this["Hull"]["templates"]["profile/main"] = Handlebars.template(function (Handle
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.stats;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.liked;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
-  buffer += escapeExpression(stack1) + "</strong>\n      <small>Likes</small>\n    </li>\n  </ul>\n</div>\n\n<h3 class=\"heading-body\">Latest Pictures</h3>\n<div data-hull-widget='pictures' data-hull-user-id=\"";
+  buffer += escapeExpression(stack1) + "</strong>\n      <small>Likes</small>\n    </li>\n  </ul>\n</div>\n\n<h3 class=\"heading-body\">Latest Pictures</h3>\n\n";
+  buffer += "\n<div data-hull-widget='pictures' data-hull-user-id=\"";
   stack1 = depth0.user;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.id;
   stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;

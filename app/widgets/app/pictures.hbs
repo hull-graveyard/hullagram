@@ -5,7 +5,19 @@
   <h1 class="title">Feed</h1>
   {{/if}}
 </header>
+
+{{!
+  The content is delegated to the 'pictures' widget.
+  If an id is specified, we use it to filter the results
+  to display a single picture.
+
+  This is used in the routes of the form : /pictures/xxxxxx
+}}
+
 <div class="content" {{#if id}}data-hull-id="{{id}}"{{/if}} data-hull-widget="pictures">
   <i class="icon-spinner icon-spin loading-spinner"></i>
 </div>
+
+{{! App nav footer included as a Handlebars partial }}
+
 {{> app/nav}}

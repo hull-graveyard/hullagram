@@ -1,4 +1,11 @@
 {{#if likes}}
-  {{> comment/likes}}
+  <div class="list-likes media cf">
+    <i class="icon-heart img"></i>
+    <div class="bd">
+        {{#join likes lastSep=" and "}}<a href="#/users/{{user.id}}">{{user.name}}</a>{{/join}}
+        like this.
+    </div>
+  </div>
 {{/if}}
-<div data-hull-id="{{comment_id}}" data-hull-widget="comments@hull"></div>
+
+<div data-hull-id="{{picture_id}}" data-hull-widget="comments@hull"></div>

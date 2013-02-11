@@ -5,9 +5,15 @@
         <img src="{{user.picture}}">
       </div>
       <div class="bd author-metas">
+
         <h3 class="author-title">{{user.name}}</h3>
+
+        {{! FIXME: use the real user location from its twitter profile info }}
         <h4 class="author-location">Paris, France</h4>
+
+        {{! 'fromNow' is a custom Handlebars helper distributed with hull-js }}
         <h4 class="author-updated">{{fromNow user.created_at}}</h4>
+
       </div>
     </div>
   </div>
@@ -28,4 +34,6 @@
 </div>
 
 <h3 class="heading-body">Latest Pictures</h3>
+
+{{! Here we display a pictures list filtered by user_id }}
 <div data-hull-widget='pictures' data-hull-user-id="{{user.id}}"></div>

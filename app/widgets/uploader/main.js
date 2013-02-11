@@ -1,15 +1,25 @@
+// All the heavylifting for pictures upload
+// is handled by the widget upload@hull
+// Here we attach event handlers on the different steps of the upload process
+//
+// This widget is only used to display overlayed notifications...
+
 Hull.widget('uploader', {
 
   templates: ['uploader'],
 
   initialize: function() {
+    // Events emitted by the 'upload@hull' widget.
     this.sandbox.on('hull.upload.send', _.bind(this.onUploadSend, this));
     this.sandbox.on('hull.upload.done', _.bind(this.onUploadDone, this));
+
+    // Events emitted by the 'new_picture' widget.
     this.sandbox.on('hullagram.pictureSaved', _.bind(this.onPictureSaved, this));
     this.sandbox.on('hullagram.savingPicture', _.bind(this.onSavingPicture, this));
   },
 
   afterRender: function() {
+    // Just to have a handle to the notification element...
     this.$notification = this.$el.find('.notification');
   },
 
@@ -40,6 +50,9 @@ Hull.widget('uploader', {
   },
 
   onUploadDone: function (files) {
+    // We use the FileReader API to display
+    // the uploaded image... saves some bandwith ;-)
+    // We could apply instagram style filters here if we were more brave...
     var file = files[0];
     if (file.type && file.type.split("/")[0] === "image") {
       // Create the thumbnail/preview
@@ -50,7 +63,9 @@ Hull.widget('uploader', {
         this.$notification
           .attr('class', 'notification active fadeOut animation-delay')
           .one('animationend webkitAnimationEnd', function() {
-            // Redirect to the camera page
+            // All right, the file uploaded is a picture and we were able to
+            // preview it...
+            // delegate the rest to someone else.
             this.sandbox.emit('hullagram.newPicture', {
               source_url: file.url,
               name: file.name,
