@@ -19,7 +19,7 @@ Hull.widget('app', {
       }
     });
 
-    router = new HullagramRouter();
+    var router = new HullagramRouter();
 
     router.on('route:view', _.bind(function(view, id, action) {
       var tpl = action || view || 'pictures';
@@ -42,7 +42,7 @@ Hull.widget('app', {
   },
 
   afterRender: function() {
-    var tab = this.$el.find("li.tab-item." + this.currentView)
+    var tab = this.$el.find("li.tab-item." + this.currentView);
     tab.addClass("active");
   }
 });
