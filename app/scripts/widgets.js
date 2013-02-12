@@ -341,8 +341,9 @@ Hull.widget('uploader', {
 
   initialize: function() {
     // Events emitted by the 'upload@hull' widget.
-    this.sandbox.on('hull.upload.send', _.bind(this.onUploadSend, this));
-    this.sandbox.on('hull.upload.done', _.bind(this.onUploadDone, this));
+    this.sandbox.on('hull.upload.send',         _.bind(this.onUploadSend, this));
+    this.sandbox.on('hull.upload.done',         _.bind(this.onUploadDone, this));
+    this.sandbox.on('hull.upload.progressall',  _.bind(this.onUploadProgress, this));
 
     // Events emitted by the 'new_picture' widget.
     this.sandbox.on('hullagram.pictureSaved', _.bind(this.onPictureSaved, this));
@@ -350,7 +351,7 @@ Hull.widget('uploader', {
   },
 
   afterRender: function() {
-    // Just to have a handle to the notification element...
+    // Just to have a handle on the notification element...
     this.$notification = this.$el.find('.notification');
   },
 
@@ -380,7 +381,13 @@ Hull.widget('uploader', {
         .find('p').text('Sending');
   },
 
-  onUploadDone: function (files) {
+  onUploadProgress: function(e) {
+    var percent = Math.round(100 * e.data.loaded / e.data.total);
+    this.$notification.find('p').text('Uploading (' + percent + '%)');
+  },
+
+  onUploadDone: function (e) {
+    var files = e.data.files;
     // We use the FileReader API to display
     // the uploaded image... saves some bandwith ;-)
     // We could apply instagram style filters here if we were more brave...

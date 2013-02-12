@@ -469,7 +469,7 @@ this["Hull"]["templates"]["new_picture/main"] = Handlebars.template(function (Ha
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<header class=\"bar-title\">\n  <a class=\"button-prev\" onclick=\"window.history.back()\">\n    Cancel\n  </a>\n  <h1 class=\"title\">Publish</h1>\n  <a class=\"button\" href=\"#\" data-hull-action=\"send\">\n    Send\n  </a>\n</header>\n<div class=\"content\">\n  <div class=\"new-picture-placeholder\">\n    <img src=\"";
+  buffer += "<header class=\"bar-title\">\n  <a class=\"button\" onclick=\"window.history.back()\">\n    Cancel\n  </a>\n  <h1 class=\"title\">Publish</h1>\n  <a class=\"button\" href=\"#\" data-hull-action=\"send\">\n    Send\n  </a>\n</header>\n<div class=\"content\">\n  <div class=\"new-picture-placeholder\">\n    <img src=\"";
   foundHelper = helpers.blob;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.blob; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
