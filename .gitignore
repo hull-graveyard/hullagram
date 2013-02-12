@@ -3,3 +3,5 @@ temp
 dist
 node_modules
 app/components
+
+/app/scripts/templates.js
