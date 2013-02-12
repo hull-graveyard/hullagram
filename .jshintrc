@@ -18,6 +18,7 @@
     "_": true,
     "$": true,
     "Hull": true,
-    "Handlebars" : true
+    "Handlebars": true,
+    "Backbone": true
   }
 }
