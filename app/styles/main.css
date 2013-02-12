@@ -612,4 +612,14 @@ header + .content-padded { padding-top: 55px; }
       left:50%;
       margin-left:-240px;
   }
+  .forkme{
+      position:fixed;
+      top:0;right:0;
+      width:149px;
+      height:149px;
+      text-indent:-100%;
+      font-size:0;line-height:0;
+      background: url(../images/forkme.png) 0 0 repeat;
+      z-index:99;
+  }
 }
