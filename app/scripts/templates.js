@@ -372,51 +372,66 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return "liked";}
+  return "unlike";}
 
 function program5(depth0,data) {
   
   
-  return "unlike";}
+  return "like";}
 
 function program7(depth0,data) {
   
   
-  return "like";}
+  return "liked";}
 
 function program9(depth0,data) {
   
   
-  return "\n    Unlike\n  ";}
+  return "unlike";}
 
 function program11(depth0,data) {
   
   
+  return "like";}
+
+function program13(depth0,data) {
+  
+  
+  return "\n    Unlike\n  ";}
+
+function program15(depth0,data) {
+  
+  
   return "\n    Like\n  ";}
 
-  buffer += "<span class=\"stat ";
+  buffer += "<a class=\"stat ";
   stack1 = depth0.isLiked;
   stack2 = {};
   stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\" data-hull-action=\"";
+  stack1 = depth0.isLiked;
+  stack2 = {};
+  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(5, program5, data),fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\">\n  <i class=\"icon-heart\"></i>\n  ";
   foundHelper = helpers.likesCount;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.likesCount; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "\n</span>\n<a class=\"action ";
+  buffer += escapeExpression(stack1) + "\n</a>\n<a class=\"action ";
   stack1 = depth0.isLiked;
   stack2 = {};
-  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(7, program7, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\" data-hull-action=\"";
   stack1 = depth0.isLiked;
   stack2 = {};
-  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data});
+  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(11, program11, data),fn:self.program(9, program9, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\">\n  ";
   stack1 = depth0.isLiked;
   stack2 = {};
-  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(11, program11, data),fn:self.program(9, program9, data),data:data});
+  stack1 = helpers['if'].call(depth0, stack1, {hash:stack2,inverse:self.program(15, program15, data),fn:self.program(13, program13, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n</a>\n";
   return buffer;});
