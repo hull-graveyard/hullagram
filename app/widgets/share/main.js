@@ -6,7 +6,6 @@ Hull.widget('share', {
   },
 
   beforeRender: function(data) {
-    console.warn("Share Data", data);
   },
 
   actions: {

@@ -223,10 +223,10 @@ Hull.widget('pictures', {
       var where = { obj_type: 'Image', verb: 'create' };
 
       // Filter by actor_id to get the latest pictures of a user
-      // this.options.user_id come from a data attribute passed to the widget like this:
+      // this.options.userId come from a data attribute passed to the widget like this:
       // <div data-hull-widget='pictures' data-hull-user-id='xxxxxxxxx'>
-      if (this.options.user_id) {
-        where.actor_id = this.options.user_id;
+      if (this.options.userId) {
+        where.actor_id = this.options.userId;
       }
 
       // Filter by obj_id to get a single picture
@@ -307,7 +307,6 @@ Hull.widget('share', {
   },
 
   beforeRender: function(data) {
-    console.warn("Share Data", data);
   },
 
   actions: {

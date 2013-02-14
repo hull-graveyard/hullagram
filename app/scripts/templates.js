@@ -56,7 +56,7 @@ this["Hull"]["templates"]["app/new_picture"] = Handlebars.template(function (Han
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div  data-hull-source-url=\"";
+  buffer += "<div  data-hull-source_url=\"";
   foundHelper = helpers.source_url;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.source_url; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
@@ -724,7 +724,7 @@ function program1(depth0,data) {
   foundHelper = helpers.description;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1) + "</textarea>\n      </div>\n    </div>\n\n    <a class=\"button button-block button-share\" data-hull-action=\"share\" data-hull-network=\"twitter\" data-hull-source-url=\"";
+  buffer += escapeExpression(stack1) + "</textarea>\n      </div>\n    </div>\n\n    <a class=\"button button-block button-share\" data-hull-action=\"share\" data-hull-network=\"twitter\" data-hull-source_url=\"";
   stack1 = depth0.id;
   stack2 = {};
   foundHelper = helpers.imageUrl;
@@ -737,6 +737,59 @@ function program1(depth0,data) {
   else { stack1 = depth0.pictures; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   stack2 = {};
   if (!helpers.pictures) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;});
+
+this["Hull"]["templates"]["upload/file_single"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers; data = data || {};
+  
+
+
+  return "<span class=\"btn btn-success fileinput-button\">\n  <i class=\"icon-plus icon-white\"></i>\n  <input type=\"file\" name=\"file\" accept=\"image/*\" capture=\"camera\">\n</span>\n";});
+
+this["Hull"]["templates"]["upload/upload"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers; partials = partials || Handlebars.partials; data = data || {};
+  var buffer = "", stack1, stack2, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, stack2, foundHelper;
+  buffer += "\n  <form action=\"";
+  foundHelper = helpers.url;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.url; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" method=\"post\" enctype=\"multipart/form-data\" class=\"hull_upload\">\n\n    ";
+  stack1 = depth0.params;
+  stack2 = {};
+  foundHelper = helpers.key_value;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(2, program2, data),data:data}) : helperMissing.call(depth0, "key_value", stack1, {hash:stack2,inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n    <div class=\"dropzone well hidden-phone hidden-phone-tablet\" height=\"100px;\" width=\"100px;\">Drop an image here</div>\n\n    <input type=\"hidden\" name=\"Filename\" value=\"\"/>\n    <input type=\"hidden\" name=\"Content-Type\" value=\"\"/>\n    <input type=\"hidden\" name=\"name\" value=\"\"/>\n\n    <div class=\"fileupload-buttonbar row-fluid\">\n      <div class='span12'>\n        ";
+  stack1 = depth0;
+  stack1 = self.invokePartial(partials['upload/file_single'], 'upload/file_single', stack1, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n      </div>\n    </div>\n\n    <div class=\"fileupload-progress fade row-fluid\">\n      <div class='span12'>\n        <div class=\"progress progress-success progress-striped active\" role=\"progressbar\" aria-valuemin=\"0\" aria-valuemax=\"100\">\n          <div class=\"bar\" style=\"width:0%;\"></div>\n        </div>\n        <div class=\"progress-extended\">&nbsp;</div>\n      </div>\n    </div>\n\n\n    <div class='error'></div>\n    <div class='filescontainer'></div>\n  </form>\n";
+  return buffer;}
+function program2(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\n      <input type=\"hidden\" name=\"";
+  foundHelper = helpers.key;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.key; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\" value=\"";
+  foundHelper = helpers.value;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.value; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1) + "\"/>\n    ";
+  return buffer;}
+
+  foundHelper = helpers.upload_policy;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
+  else { stack1 = depth0.upload_policy; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  stack2 = {};
+  if (!helpers.upload_policy) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:stack2,inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n";
   return buffer;});
