@@ -19,7 +19,7 @@ Hull.widget('likes', {
     // the Likes api returns the liked objects wrapped in the 'liked' key
     // cf. http://alpha.hull.io/docs/api/likes
     data.pictures = _.filter(_.pluck(data.likes, 'liked'), function(l) {
-      return l.type === 'image';
+      return l && l.type === 'image';
     });
     return data;
   }
