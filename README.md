@@ -1,7 +1,7 @@
 -----------------------
 # About this project
 
-This project is built on the Hull platform, with [Aura](github.com/aurajs/aura), [Backbone.js](https://github.com/documentcloud/backbone) and lots of other cool libraries.
+This project is built on the [Hull platform](http://hull.io), with [Aura](github.com/aurajs/aura), [Backbone.js](https://github.com/documentcloud/backbone), [Ratchet](http://maker.github.com/ratchet/) and lots of other cool libraries.
 
 **You don't need an account on [hull.io](http://hull.io) to use it locally, the `appId` is already present in this app.**
 
@@ -12,7 +12,7 @@ Implement cool features (see the last paragraph for ideas), contribute to this r
 # Hullagram
 This is a fully contained demo of what you can achieve with [hull](http://hull.io).
 
-[View demo (http://gram.hull.io/)](http://gram.hull.io/)
+[View demo](http://gram.hull.io/)
 
 We use [Ratchet](http://maker.github.com/ratchet/), so it will work only on Webkit browsers, iOS and Android.
 
