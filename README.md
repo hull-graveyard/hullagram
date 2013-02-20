@@ -84,7 +84,7 @@ Deploy your app to heroku:
 Here are a few ideas for further improvement :
 
 * Photo Filters
-  With caman.js/vintage.js
+  With [caman.js](http://camanjs.com/)/[vintage.js](http://vintagejs.com/)
   or https://github.com/kudakurage/CSS-PhotoEditor-for-iOS6 + svg foreignObject + canvas drawImage()
 
 * Tapping once on an image in a feed could open a detail view
