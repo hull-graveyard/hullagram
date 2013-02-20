@@ -1,4 +1,3 @@
------------------------
 # About this project
 
 This project is built on the [Hull platform](http://hull.io), with [Aura](github.com/aurajs/aura), [Backbone.js](https://github.com/documentcloud/backbone), [Ratchet](http://maker.github.com/ratchet/) and lots of other cool libraries.
@@ -9,6 +8,7 @@ Implement cool features (see the last paragraph for ideas), contribute to this r
 
 
 -----------------------
+
 # Hullagram
 This is a fully contained demo of what you can achieve with [hull](http://hull.io).
 
@@ -205,4 +205,5 @@ Here are a few ideas for further improvement :
 * Pull to refresh
 * Add error handling to image uploads
 * PushState support
+* _Your idea here… ?_
 
