@@ -1,3 +1,14 @@
+-----------------------
+# About this project
+
+This project is built on the Hull platform, with [Aura](github.com/aurajs/aura), [Backbone.js](https://github.com/documentcloud/backbone) and lots of other cool libraries.
+
+**You don't need an account on Hull to use it locally, the App key is already present in this app.**
+
+Implement cool features (see the last paragraph for ideas), improve the repo and we'll give you an early access to Hull so you can build your own apps !
+
+
+-----------------------
 # Hullagram
 
 This is a fully contained demo of what you can achieve with hull.
@@ -65,7 +76,7 @@ Deploy your app to heroku:
 -----------------------
 # Possible evolutions
 
-Here are a few cool features you could implement
+Here are a few ideas for further improvement :
 
 * Photo Filters
   With caman.js/vintage.js
