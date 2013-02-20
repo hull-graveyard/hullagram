@@ -11,6 +11,10 @@ Implement cool features (see the last paragraph for ideas), improve the repo and
 -----------------------
 # Hullagram
 
+[View demo (http://gram.hull.io/)](http://gram.hull.io/)
+
+We use [Ratchet](http://maker.github.com/ratchet/), so it will work only on Webkit browsers, iOS and Android.
+
 This is a fully contained demo of what you can achieve with hull.
 
 * Login with Twitter
@@ -27,7 +31,6 @@ Prepare to be amazed.
 The steps below are tailored for Mac environments :
 Linux should mostly work the same.
 
-[View demo](http://gram.hull.io/)
 
 ## Installing
 
