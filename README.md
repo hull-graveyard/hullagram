@@ -58,65 +58,6 @@ then install grunt and it's modules in the project's folder.
 
     grunt server
 
-## Deploying the app
-
-### App & Organization Setup on hull
-
-Go to [your org's dashboard](http://accounts.alpha.hullapp.io) and setup a few services :
-
-Required services :
-
-* A [Twitter App](http://hull.io/docs/services/twitter/) to setup auth
-* A [Hull store](http://hull.io/docs/services/hull_store/) to store the uploaded images
-
-Optional anlytics services :
-
-* [Mixpanel](http://hull.io/docs/services/mixpanel/) and / or
-* [Google Analytics](http://hull.io/docs/services/google_analytics/)
-
-Then create a new hull app.
-
-_Don't forget to whitelist your domains and to setup your `appId` and `orgUrl`in the Hull.init method (which is in located in the [index.html](app/index.html#L33-L38) file)._
-
-
-
-### Deployment on Heroku
-
-First create your heroku app if it's not done yet :
-
-    heroku create my-own-hullagram
-
-Build your app for deployement, and commit the compiled version:
-
-    git checkout -b deploy
-    grunt build
-    git add -f dist
-    git commit -m "Deployment build"
-
-Deploy your app to heroku:
-
-    git subtree push --prefix dist git@heroku.com:my-own-hullagram.git master
-    open http://my-own-hullagram.herokuapp.com
-
-
-
-
------------------------
-
-# Possible evolutions
-
-Here are a few ideas for further improvement :
-
-* Photo Filters
-  With [caman.js](http://camanjs.com/)/[vintage.js](http://vintagejs.com/)
-  or https://github.com/kudakurage/CSS-PhotoEditor-for-iOS6 + [svg foreignObject](https://developer.mozilla.org/en-US/docs/HTML/Canvas/Drawing_DOM_objects_into_a_canvas) + canvas drawImage()
-
-* Tapping once on an image in a feed could open a detail view
-* Tapping on the likes count cell in a profile view could show likes
-* Doubletapping an image could like/unlike it
-* Pull to refresh
-* Add error handling to image uploads
-* PushState support
 
 -----------------------
 
@@ -185,7 +126,7 @@ Comments use the packaged widget comments@hull, with a [local template override]
 
 We use the apis available on iOS6+ to have access to the camera.
 
-		<input type="file" name="file" accept="image/*" capture="camera">
+    <input type="file" name="file" accept="image/*" capture="camera">
 
 
 ### Upload
@@ -201,4 +142,67 @@ Once the widget is uploaded, the user gets a chance to review and describe it be
 
 Confirming the publication then stores the picture as an [Image](http://hull.io/docs/api/resources/) that belongs to the user.
 
+
+-----------------------
+
+
+# Deploying the app
+
+### App & Organization Setup on hull
+
+Go to [your org's dashboard](http://accounts.alpha.hullapp.io) and setup a few services :
+
+Required services :
+
+* A [Twitter App](http://hull.io/docs/services/twitter/) to setup auth
+* A [Hull store](http://hull.io/docs/services/hull_store/) to store the uploaded images
+
+Optional anlytics services :
+
+* [Mixpanel](http://hull.io/docs/services/mixpanel/) and / or
+* [Google Analytics](http://hull.io/docs/services/google_analytics/)
+
+Then create a new hull app.
+
+_Don't forget to whitelist your domains and to setup your `appId` and `orgUrl`in the Hull.init method (which is in located in the [index.html](app/index.html#L33-L38) file)._
+
+
+
+### Deployment on Heroku
+
+First create your heroku app if it's not done yet :
+
+    heroku create my-own-hullagram
+
+Build your app for deployement, and commit the compiled version:
+
+    git checkout -b deploy
+    grunt build
+    git add -f dist
+    git commit -m "Deployment build"
+
+Deploy your app to heroku:
+
+    git subtree push --prefix dist git@heroku.com:my-own-hullagram.git master
+    open http://my-own-hullagram.herokuapp.com
+
+
+
+
+-----------------------
+
+# Possible evolutions
+
+Here are a few ideas for further improvement :
+
+* Photo Filters
+  With [caman.js](http://camanjs.com/)/[vintage.js](http://vintagejs.com/)
+  or https://github.com/kudakurage/CSS-PhotoEditor-for-iOS6 + [svg foreignObject](https://developer.mozilla.org/en-US/docs/HTML/Canvas/Drawing_DOM_objects_into_a_canvas) + canvas drawImage()
+
+* Tapping once on an image in a feed could open a detail view
+* Tapping on the likes count cell in a profile view could show likes
+* Doubletapping an image could like/unlike it
+* Pull to refresh
+* Add error handling to image uploads
+* PushState support
 
