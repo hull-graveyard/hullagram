@@ -3,14 +3,14 @@
 
 This project is built on the Hull platform, with [Aura](github.com/aurajs/aura), [Backbone.js](https://github.com/documentcloud/backbone) and lots of other cool libraries.
 
-**You don't need an account on Hull to use it locally, the App key is already present in this app.**
+**You don't need an account on [hull.io](http://hull.io) to use it locally, the `appId` is already present in this app.**
 
-Implement cool features (see the last paragraph for ideas), improve the repo and we'll give you an early access to Hull so you can build your own apps !
+Implement cool features (see the last paragraph for ideas), contribute to this repo and we'll give you an early access to Hull so you can build and deploy your own apps !
 
 
 -----------------------
 # Hullagram
-This is a fully contained demo of what you can achieve with hull.
+This is a fully contained demo of what you can achieve with [hull](http://hull.io).
 
 [View demo (http://gram.hull.io/)](http://gram.hull.io/)
 
@@ -58,27 +58,51 @@ then install grunt and it's modules in the project's folder.
 
     grunt server
 
-## Deployment
+## Deploying the app
+
+### App & Organization Setup on hull
+
+Go to [your org's dashboard](http://accounts.alpha.hullapp.io) and setup a few services : 
+
+Required services :
+
+* A [Twitter App](http://hull.io/docs/services/twitter/) to setup auth
+* A [Hull store](http://hull.io/docs/services/hull_store/) to store the uploaded images
+
+Optional anlytics services : 
+
+* [Mixpanel](http://hull.io/docs/services/mixpanel/) and / or
+* [Google Analytics](http://hull.io/docs/services/google_analytics/)
+
+Then create a new hull app. 
+
+_Don't forget to whitelist your domains and to setup your `appId` and `orgUrl`in the Hull.init method (which is in located in the `index.html` file)._
+
+
+
+### Deployment on Heroku
 
 First create your heroku app if it's not done yet :
 
-    heroku create your_amazing_app
+    heroku create my-own-hullagram
 
 Build your app for deployement, and commit the compiled version:
 
+    git checkout -b deploy
     grunt build
-    cd dist
-    git init
-    git add dist
+    git add -f dist
     git commit -m "Deployment build"
 
 Deploy your app to heroku:
 
-    git subtree push --prefix dist heroku master
-    open http://your_amazing_app.herokuapp.com
+    git subtree push --prefix dist git@heroku.com:my-own-hullagram.git master
+    open http://my-own-hullagram.herokuapp.com
+    
+
     
   
 -----------------------
+
 # Possible evolutions
 
 Here are a few ideas for further improvement :
@@ -93,3 +117,88 @@ Here are a few ideas for further improvement :
 * Pull to refresh
 * Add error handling to image uploads
 * PushState support
+
+-----------------------
+
+# Anatomy of Hullagram
+
+Hullagram is built around a the following apis available on Hull
+
+* [Activities](http://hull.io/docs/api/activities)
+* [Resources](http://hull.io/docs/api/resources/)
+* [Comments](http://hull.io/docs/api/comments/)
+* [Likes](http://hull.io/docs/api/likes/)
+* [Friendships](http://hull.io/docs/api/friendships/)
+
+The code is a mix of [custom widgets](http://hull.io/docs/widgets/creating_widgets/) and [packaged widgets](http://hull.io/docs/widgets/packaged_widgets/) distributed via hull.
+Most of the packaged widgets are skinned by [overriding default templates](http://hull.io/docs/widgets/overriding_templates/)
+
+## Top level widgets
+
+You can find an introduction on how Hull widgets work [here](http://hull.io/docs/widgets/introduction/).
+
+The document body initially contains only 2 widgets : 
+
+* [hullagram](app/widgets/hullagram/main.hbs) is a container that displays the login screen if the current user is not connected, and the [app](app/widgets/app/main.js) widget if he is.
+* [uploader](app/widgets/uploader/main.js) is used to display overlay notifications during file uploads.
+
+Then when the user is connected via Twitter, the [app](app/widgets/app/main.js) widget take over the whole page and starts to act as the main controller.
+
+
+## Screens
+
+
+### \#/pictures
+
+The first screen is the public activity feed of the app. 
+
+It is implemented in the [pictures widget](app/widgets/pictures/main.js)
+
+The data is fetched from the [Activities API](http://hull.io/docs/api/activities)
+
+The like buttons & like counts on the images comme from a widget distributed with hull (like_button@hull) and that is just skinned here
+
+### \#/likes
+
+The pictures displayed are those liked by the current user.
+
+It is implemented in the [likes widget](app/widgets/likes/main.js)
+
+The data is fetched from the [Likes API](http://hull.io/docs/api/likes)
+
+### \#/friends
+
+Here we display the list of people that the current user follows on Twitter that also have a profile on the app.
+
+We use the [packaged widgets](http://hull.io/docs/widgets/packaged_widgets/) `friends_list@hull` and just override its [main template](app/widgets/friends_list/friends_list.hbs)
+
+### \#/profile
+
+Just displaying a user profile, the widget is [here](app/widgets/profile)
+
+### \#/comments
+
+Comments use the packaged widget comments@hull, with a [local template override](app/widgets/comments/comments.hbs).
+
+
+## Taking pictures
+
+We use the apis available on iOS6+ to have access to the camera.
+
+		<input type="file" name="file" accept="image/*" capture="camera">
+
+
+### Upload
+
+The pictures are then uploaded to a [HullStore](http://hull.io/docs/services/hull_store/) (wich is an S3 bucket with CORS activated) via the packaged `upload@hull` widget.
+
+The [uploader widget](app/widgets/uploader) then reacts to events emmited by the `upload@hull` widget to display upload status info. (by the way, it's a good example of the way widgets are supposed to interact in a widgets based [aura](https://github.com/aurajs/aura) / [hull](http://hull.io) app).
+
+
+### Publication
+
+Once the widget is uploaded, the user gets a chance to review and describe it before its actual publication.
+
+Confirming the publication then stores the picture as an [Image](http://hull.io/docs/api/resources/) that belongs to the user.
+
+
