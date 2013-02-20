@@ -27,6 +27,8 @@ Prepare to be amazed.
 The steps below are tailored for Mac environments :
 Linux should mostly work the same.
 
+[View demo](http://gram.hull.io/)
+
 ## Installing
 
 First, clone this repository :
