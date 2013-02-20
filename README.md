@@ -60,3 +60,20 @@ Deploy your app to heroku:
 
     git subtree push --prefix dist heroku master
     open http://your_amazing_app.herokuapp.com
+    
+  
+-----------------------
+# Possible evolutions
+
+Here are a few cool features you could implement
+
+* Photo Filters
+  With caman.js/vintage.js
+  or https://github.com/kudakurage/CSS-PhotoEditor-for-iOS6 + svg foreignObject + canvas drawImage()
+
+* Tapping once on an image in a feed could open a detail view
+* Tapping on the likes count cell in a profile view could show likes
+* Doubletapping an image could like/unlike it 
+* Pull to refresh
+* Add error handling to image uploads
+* PushState support
