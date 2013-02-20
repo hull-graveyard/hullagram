@@ -62,21 +62,21 @@ then install grunt and it's modules in the project's folder.
 
 ### App & Organization Setup on hull
 
-Go to [your org's dashboard](http://accounts.alpha.hullapp.io) and setup a few services : 
+Go to [your org's dashboard](http://accounts.alpha.hullapp.io) and setup a few services :
 
 Required services :
 
 * A [Twitter App](http://hull.io/docs/services/twitter/) to setup auth
 * A [Hull store](http://hull.io/docs/services/hull_store/) to store the uploaded images
 
-Optional anlytics services : 
+Optional anlytics services :
 
 * [Mixpanel](http://hull.io/docs/services/mixpanel/) and / or
 * [Google Analytics](http://hull.io/docs/services/google_analytics/)
 
-Then create a new hull app. 
+Then create a new hull app.
 
-_Don't forget to whitelist your domains and to setup your `appId` and `orgUrl`in the Hull.init method (which is in located in the `index.html` file)._
+_Don't forget to whitelist your domains and to setup your `appId` and `orgUrl`in the Hull.init method (which is in located in the [index.html](app/index.html#L33-L38) file)._
 
 
 
@@ -97,10 +97,10 @@ Deploy your app to heroku:
 
     git subtree push --prefix dist git@heroku.com:my-own-hullagram.git master
     open http://my-own-hullagram.herokuapp.com
-    
 
-    
-  
+
+
+
 -----------------------
 
 # Possible evolutions
@@ -113,7 +113,7 @@ Here are a few ideas for further improvement :
 
 * Tapping once on an image in a feed could open a detail view
 * Tapping on the likes count cell in a profile view could show likes
-* Doubletapping an image could like/unlike it 
+* Doubletapping an image could like/unlike it
 * Pull to refresh
 * Add error handling to image uploads
 * PushState support
@@ -137,7 +137,7 @@ Most of the packaged widgets are skinned by [overriding default templates](http:
 
 You can find an introduction on how Hull widgets work [here](http://hull.io/docs/widgets/introduction/).
 
-The document body initially contains only 2 widgets : 
+The document body initially contains only 2 widgets :
 
 * [hullagram](app/widgets/hullagram/main.hbs) is a container that displays the login screen if the current user is not connected, and the [app](app/widgets/app/main.js) widget if he is.
 * [uploader](app/widgets/uploader/main.js) is used to display overlay notifications during file uploads.
@@ -150,7 +150,7 @@ Then when the user is connected via Twitter, the [app](app/widgets/app/main.js) 
 
 ### \#/pictures
 
-The first screen is the public activity feed of the app. 
+The first screen is the public activity feed of the app.
 
 It is implemented in the [pictures widget](app/widgets/pictures/main.js)
 
