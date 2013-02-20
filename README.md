@@ -85,7 +85,7 @@ Here are a few ideas for further improvement :
 
 * Photo Filters
   With [caman.js](http://camanjs.com/)/[vintage.js](http://vintagejs.com/)
-  or https://github.com/kudakurage/CSS-PhotoEditor-for-iOS6 + svg foreignObject + canvas drawImage()
+  or https://github.com/kudakurage/CSS-PhotoEditor-for-iOS6 + [svg foreignObject](https://developer.mozilla.org/en-US/docs/HTML/Canvas/Drawing_DOM_objects_into_a_canvas) + canvas drawImage()
 
 * Tapping once on an image in a feed could open a detail view
 * Tapping on the likes count cell in a profile view could show likes
