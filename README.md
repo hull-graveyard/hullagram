@@ -31,39 +31,11 @@ Prepare to be amazed.
 The steps below are tailored for Mac environments :
 Linux should mostly work the same.
 
-
-## Installing
-
-First, clone this repository :
-
-    git clone git://github.com/hull/hullagram.git
-
-Install [node.js](http://nodejs.org) (Only used for building the app, not needed for deployment)
-
-[grunt-cli](https://github.com/gruntjs/grunt-cli) as a global module.
-It's amazing so you should do it anyways.
-
-    [sudo] npm install grunt-cli -g
-    [sudo] npm install bower -g
-
-then install grunt and it's modules in the project's folder.
-
-    cd hullagram/
-    npm install
-    bower install
-
-## Running the app
-
-### To run the app locally, run:
-
-    grunt server
-
-
 -----------------------
 
 # Anatomy of Hullagram
 
-Hullagram is built around a the following apis available on Hull
+Hullagram is built around the following apis on Hull
 
 * [Activities](http://hull.io/docs/api/activities)
 * [Resources](http://hull.io/docs/api/resources/)
@@ -144,6 +116,32 @@ Confirming the publication then stores the picture as an [Image](http://hull.io/
 
 
 -----------------------
+
+# Installing
+
+First, clone this repository :
+
+    git clone git://github.com/hull/hullagram.git
+
+Install [node.js](http://nodejs.org) (Only used for building the app, not needed for deployment)
+
+[grunt-cli](https://github.com/gruntjs/grunt-cli) as a global module.
+It's amazing so you should do it anyways.
+
+    [sudo] npm install grunt-cli -g
+    [sudo] npm install bower -g
+
+then install grunt and it's modules in the project's folder.
+
+    cd hullagram/
+    npm install
+    bower install
+
+# Running the app
+
+### To run the app locally, run:
+
+    grunt server
 
 
 # Deploying the app
