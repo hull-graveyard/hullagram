@@ -8,13 +8,13 @@ Implement cool features (see the last paragraph for ideas), contribute to this r
 
 
 -----------------------
-
 # Hullagram
+
 This is a fully contained demo of what you can achieve with [hull](http://hull.io).
 
-[View demo](http://gram.hull.io/)
+It's somewhat of a clone of Instagram. [View demo](http://gram.hull.io/)
 
-We use [Ratchet](http://maker.github.com/ratchet/), so it will work only on Webkit browsers, iOS and Android.
+Currently, we use [Ratchet](http://maker.github.com/ratchet/), so it will work only on Webkit browsers, iOS and Android.
 
 
 * Login with Twitter
@@ -32,10 +32,9 @@ The steps below are tailored for Mac environments :
 Linux should mostly work the same.
 
 -----------------------
+# Anatomy
 
-# Anatomy of Hullagram
-
-Hullagram is built around the following apis on Hull
+Hullagram is built around the following apis of Hull
 
 * [Activities](http://hull.io/docs/api/activities)
 * [Resources](http://hull.io/docs/api/resources/)
@@ -96,7 +95,7 @@ Comments use the packaged widget comments@hull, with a [local template override]
 
 ## Taking pictures
 
-We use the apis available on iOS6+ to have access to the camera.
+We use the apis available on iOS6+ to have access to the camera, and a little trickery to give it a nice appearance.
 
     <input type="file" name="file" accept="image/*" capture="camera">
 
@@ -116,7 +115,6 @@ Confirming the publication then stores the picture as an [Image](http://hull.io/
 
 
 -----------------------
-
 # Installing
 
 First, clone this repository :
@@ -137,6 +135,7 @@ then install grunt and it's modules in the project's folder.
     npm install
     bower install
 
+-----------------------
 # Running the app
 
 ### To run the app locally, run:
@@ -144,6 +143,7 @@ then install grunt and it's modules in the project's folder.
     grunt server
 
 
+-----------------------
 # Deploying the app
 
 ### App & Organization Setup on hull
@@ -188,8 +188,7 @@ Deploy your app to heroku:
 
 
 -----------------------
-
-# Possible evolutions
+# Next steps
 
 Here are a few ideas for further improvement :
 
