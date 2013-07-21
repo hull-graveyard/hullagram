@@ -14,31 +14,35 @@
       </div>
     </div>
   </div>
-  <div class="picture">
-    <img src="{{imageUrl id "medium"}}"  />
-  </div>
   {{#if description}}
     <div class="author-description">
       {{description}}
     </div>
   {{/if}}
+  <div class="picture">
+    <img src="{{imageUrl id "medium"}}"  />
+  </div>
   <div class="list-actions cf">
-    <a href="#/pictures/{{id}}/comments" class="stat">
-      <i class="icon-comment"></i>
-        {{#if stats.comments}}
-          {{stats.comments}}
-        {{else}}
-          0
-        {{/if}}
-    </a>
-    <span data-hull-widget="like_button@hull" data-hull-id="{{id}}" data-hull-likes-count="{{stats.likes}}"></span>
-    &middot;
-    <a href="#/pictures/{{id}}/comments" class="action">
-      Comment
-    </a>
-    &middot;
-    <a href="#/pictures/{{id}}/share" class="action">
-      Share
-    </a>
+    <ul class="segmented-controller">
+      <li data-hull-widget="like_button@hull" data-hull-id="{{id}}" data-hull-likes-count="{{stats.likes}}">
+      </li>
+      <li>
+        <a href="#/pictures/{{id}}/comments" class="">
+          Comment 
+          <i class="icon-comment">
+            {{#if stats.comments}}
+              {{stats.comments}}
+            {{else}}
+              0
+            {{/if}}
+          </i>
+        </a>
+      </li>
+      <li>
+        <a href="#/pictures/{{id}}/share" class=""> Share 
+          <i class="icon-share-alt"> </i>
+        </a>
+      </li>
+    </ul>
   </div>
 </li>

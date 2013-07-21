@@ -1,0 +1,16 @@
+
+.bar-title{
+  background-image: none;
+  border-bottom-color: transparent;
+  background: rgba(80, 172, 223, .9);
+}
+
+.bar-title .title{
+  font-weight: normal;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.island{
+  box-shadow:none;
+
+}

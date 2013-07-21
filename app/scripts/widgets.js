@@ -12,7 +12,6 @@
 
 
 Hull.widget('app', {
-
   templates: [
     // '/pictures' and '/pictures/:picture_id'
     "pictures",
@@ -35,7 +34,6 @@ Hull.widget('app', {
   ],
 
   initialize: function () {
-
     this.initRouter();
 
     // Event triggered by the 'uploader' widget whenever a new picture
@@ -236,7 +234,7 @@ Hull.widget('pictures', {
         where.obj_id = this.options.id;
       }
 
-      return this.api('hull/app/activity', {
+      return this.api('app/activity', {
         limit: 10,
         where: where,
         order_by: 'created_at DESC'
@@ -246,7 +244,7 @@ Hull.widget('pictures', {
     likes: function() {
       // If we display a single picture, we also get the list of Users who liked it
       if (this.options.id) {
-        return this.api('hull/' + this.options.id + '/likes');
+        return this.api(this.options.id + '/likes');
       }
     }
   },

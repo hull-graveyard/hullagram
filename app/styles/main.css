@@ -17,9 +17,10 @@
    Base styles: opinionated defaults
    ========================================================================== */
 body{
-  background:#e4e4e4;
+  background:#fff;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
+  font-weight: 200;
 }
 h1, h2, h3, h4, h5, h6 {
   text-rendering: optimizeLegibility;
@@ -52,12 +53,13 @@ header + .content-padded { padding-top: 55px; }
 
 .content {
   background:#e4e4e4;
+  background:#fff;
 }
 
 /* Tab bar */
 .bar-tab {
-  border-top-color: #292929;
-  background: #333333;
+  border-top-color: transparent;
+  background: rgba(80, 172, 223, .9);
   box-shadow:none;
 }
 .tab-label{display:none;}
@@ -68,6 +70,7 @@ header + .content-padded { padding-top: 55px; }
       font-weight:normal;
       display:block;
       height:100%;
+      padding: 15px 15px 0 15px;
   }
     .tab-item a i{margin-top:12px;font-size:1.75em;font-weight:normal;}
   .tab-item.active{
@@ -92,23 +95,25 @@ header + .content-padded { padding-top: 55px; }
   background-image: linear-gradient(to bottom, #345087 0, #263a62 100%);
 }
 .button-twitter {
-  background-color: #5eb3e2;
-  background-image: -webkit-linear-gradient(top, #5eb3e2 0, #3187cb 100%);
-  background-image: linear-gradient(to bottom, #5eb3e2 0, #3187cb 100%);
-  border: 1px solid #2f77b3;
-  box-shadow:inset 0 1px 1px rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
-}
-.button-twitter {
   background-color: #50acdf;
-  background-image: -webkit-linear-gradient(top, #50acdf 0, #2a75b0 100%);
-  background-image: linear-gradient(to bottom, #50acdf 0, #2a75b0 100%);
+  background-image: none;
+  border: none;
+  box-shadow:none;
+  text-shadow:none;
+}
+.login-bottom .button-twitter{
+  background: white;
+  color: #50acdf;
+}
+.button-main{
+  font-weight: normal;
 }
 /* ==========================================================================
    Hullagram
    ========================================================================== */
 
 /* --------------- */
-/* --- Sharred --- */
+/* --- Shared --- */
 /* --------------- */
 
 /* CSS3 Animations */
@@ -170,10 +175,10 @@ header + .content-padded { padding-top: 55px; }
 
 /* Island */
 .island{
-    margin: 12px 12px 20px;
-    border-radius:4px;
+    margin: 40px 0 20px;
+    border-radius:0;
     background:#FFF;
-    box-shadow:0 1px 2px #acacac;
+    box-shadow:none;
     padding:10px;
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
@@ -291,10 +296,10 @@ header + .content-padded { padding-top: 55px; }
 }
 .list-pictures .picture{
     position:relative;
-    margin:0 -14px 10px -14px;
+    margin:0 -10px 10px -10px;
 }
 .list-pictures .picture img{
-    box-shadow:0 1px 3px #acacac;
+    box-shadow:0 0px 1px rgba(0, 0, 0, 0.4);
     display:inline-block;
     vertical-align:middle;
     width: 100%;
@@ -310,15 +315,17 @@ header + .content-padded { padding-top: 55px; }
       opacity:.75;
   }
   .author-description{
-    margin-bottom:10px;
+    margin-bottom:20px;
+    padding: 0 3px;
+    font-size: 15px;
   }
   .author-picture img{
       width:40px;
   }
   .author-title{
       color:#222;
-      font-size:14px;
-      line-height:20px;
+      font-size:16px;
+      line-height:24px;
   }
   .author-title a{color:#222}
   .author-location,
@@ -391,10 +398,8 @@ header + .content-padded { padding-top: 55px; }
 .list-actions{
     border-radius:0 0 4px 4px;
     margin:0 -10px -10px;
-    border-top:1px solid #e3e3e3;
+    border-top:1px solid transparent;
     color:#bababa;
-    background-image: -webkit-linear-gradient(top, rgb(248, 248, 248), rgb(229, 229, 229));
-    background-image: linear-gradient(top, rgb(248, 248, 248), rgb(229, 229, 229));
     padding:0 4px 0 8px;
 }
   .list-actions .stat,
@@ -540,9 +545,9 @@ header + .content-padded { padding-top: 55px; }
   left:0;
   width:100%;
   height:100%;
-  background:-webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0), rgba(0,0,0,.25)),
+  background:-webkit-radial-gradient(center, ellipse cover,  rgba(80, 172, 223,0.2), rgba(80, 172, 223,.8)),
               url(../images/login-bg.png) 50% 50%;
-  background:radial-gradient(center, ellipse cover, rgba(0,0,0,0), rgba(0,0,0,.25)),
+  background:radial-gradient(center, ellipse cover, rgba(80, 172, 223,0.2), rgba(80, 172, 223,.8)),
               url(../images/login-bg.png) 50% 50%;
   background-size:cover;
 }
@@ -576,7 +581,7 @@ header + .content-padded { padding-top: 55px; }
       left: 0;
       right: 0;
       padding: 20px 20px 10px;
-      background-color: rgba(0,0,0,.3);
+      /*background-color: rgba(0,0,0,.3);*/
   }
 
 /* Fork Me */
@@ -598,10 +603,10 @@ header + .content-padded { padding-top: 55px; }
       content:"";
       position:fixed;
       top:0;bottom:0;left:50%;
-      width: 480px;
+      width: 432px;
       z-index:-1;
       box-shadow:0 0 8px 2px rgba(0,0,0,.5);
-      margin-left:-241px;
+      margin-left:-217px;
       border-left:1px solid #222;
       border-right:1px solid #222;
   }
@@ -609,12 +614,12 @@ header + .content-padded { padding-top: 55px; }
   .bar-title,
   .bar-tab,
   .login{
-    max-width: 480px;
+    max-width: 432px;
     margin:0 auto;
   }
   .login{
       left:50%;
-      margin-left:-240px;
+      margin-left:-216px;
   }
   .forkme{
       display:block;
@@ -627,4 +632,38 @@ header + .content-padded { padding-top: 55px; }
       background: url(../images/forkme.png) 0 0 repeat;
       z-index:99;
   }
+}
+
+.list-actions{
+  padding: 0;
+}
+.list-actions .segmented-controller{
+  margin: 0;
+  padding: 0;
+  border:0;
+  background-image: none;
+  box-shadow: none;
+  background-color: transparent;
+  margin: 0 5px;
+}
+.list-actions .segmented-controller li{
+  box-shadow:none;
+  border-left-color:transparent;
+  margin: 0 5px;
+  /*background: #eee;*/
+  border-radius: 5px;
+}
+
+.list-actions .segmented-controller li > a {
+  font-weight: 200;
+  font-size: 15px;
+  color: #419BE5;
+}
+
+.list-actions .segmented-controller li > a i{
+  color: #419BE5;
+}
+
+.author-picture img{
+  border-radius: 100%;
 }

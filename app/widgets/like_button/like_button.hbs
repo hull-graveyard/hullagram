@@ -1,11 +1,10 @@
-<a class="stat {{#if isLiked}}liked{{/if}}" data-hull-action="{{#if isLiked}}unlike{{else}}like{{/if}}">
-  <i class="icon-heart"></i>
-  {{likesCount}}
-</a>
-<a class="action {{#if isLiked}}liked{{/if}}" data-hull-action="{{#if isLiked}}unlike{{else}}like{{/if}}">
+<a class="{{#if isLiked}}liked{{/if}}" data-hull-action="{{#if isLiked}}unlike{{else}}like{{/if}}">
   {{#if isLiked}}
     Unlike
   {{else}}
     Like
   {{/if}}
+  <i class="icon-heart">
+    {{likes}}
+  </i>
 </a>

@@ -1,12 +1,12 @@
 {{#if pictures}}
 <ul class="list-pictures">
-{{#pictures}}
-  {{> pictures/picture}}
-{{/pictures}}
+  {{#pictures}}
+    {{> pictures.picture}}
+  {{/pictures}}
 </ul>
 
 {{#if single_picture_id}}
-  {{> pictures/likes}}
+  {{> pictures.likes}}
   <div data-hull-id="{{single_picture_id}}" data-hull-widget="comments@hull" class="hull-comments-embed"></div>
 {{/if}}
 

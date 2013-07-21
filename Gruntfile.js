@@ -62,7 +62,7 @@ module.exports = function (grunt) {
           "app/scripts/templates.js" : ["app/widgets/**/*.hbs"]
         },
         options: {
-          wrapped: true,
+          wrapped: false,
           namespace: "Hull.templates",
           processName: function(filename) {
             return filename.replace(/^app\/widgets\//, '').replace(/\.hbs$/, '');

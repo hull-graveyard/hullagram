@@ -12,7 +12,6 @@
 
 
 Hull.widget('app', {
-
   templates: [
     // '/pictures' and '/pictures/:picture_id'
     "pictures",
@@ -35,7 +34,6 @@ Hull.widget('app', {
   ],
 
   initialize: function () {
-
     this.initRouter();
 
     // Event triggered by the 'uploader' widget whenever a new picture
