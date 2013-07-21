@@ -17,6 +17,8 @@ Hull.widget('profile', {
   beforeRender: function (data) {
     // Is it me ?
     data.isMe = data.user.id === data.me.id;
+    data.user.stats.images = data.user.stats.images || "0"
+    data.user.stats.liked = data.user.stats.liked || "0"
   }
 
 });

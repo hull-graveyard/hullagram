@@ -41,10 +41,11 @@ Hull.widget('app', {
     this.sandbox.on('hullagram.newPicture', _.bind(function(pic) {
       this.render('new_picture', pic);
     }, this));
-
+    return false;
   },
 
   initRouter: function() {
+
     var HullagramRouter = Backbone.Router.extend({
       routes: {
         ':view(/:id)(/:action)' : 'view'
@@ -54,11 +55,13 @@ Hull.widget('app', {
     var router = new HullagramRouter();
 
     router.on('route:view', _.bind(function(view, id, action) {
+      console.log('route_view', arguments)
       var tpl = action || view || 'pictures';
       if (!_.include(this.templates, tpl)) {
         tpl = 'pictures';
       }
       this.currentView = tpl;
+      console.log('Router', tpl)
 
       // Actual re-rendering of the widget with
       // the template that corresponds to the currentView
@@ -71,6 +74,7 @@ Hull.widget('app', {
       router.navigate(route, { trigger: true });
     });
 
+    Backbone.history.start();
   },
 
   beforeRender: function(data) {

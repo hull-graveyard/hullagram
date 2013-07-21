@@ -6,11 +6,103 @@
 }
 
 .bar-title .title{
-  font-weight: normal;
+  font-weight: 500;
+  font-size:16px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.02);
 }
 
 .island{
   box-shadow:none;
+}
 
+.bar-tab{
+  border-top: 0;
+}
+
+.bar-title [class*="button"]{
+  border:none;
+  background: none;
+  box-shadow: none;
+  font-size: 16px;
+  text-shadow:none;
+  font-weight: 200;
+}
+
+.tab-item.active{
+  background-color: #0072B3;
+}
+
+.list .chevron + [class*="count"]{
+  background: none;
+  color: rgba(80, 172, 223, .9);
+}
+
+.chevron:after{
+  top:13px;
+}
+.chevron:before{
+  top:6px;
+}
+.chevron:before, .chevron:after{
+  height: 1px;
+  background: rgb(80, 172, 223);
+}
+
+.bar-title .button-prev:before{
+  background: none;
+}
+
+.bar-title [class*="button"]{
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+}
+.bar-title .button-prev{
+  border-radius: none;
+  border-radius: 0;
+  border-color:white; 
+  margin-left: 13px;
+}
+
+.bar-title .button-prev:before, .bar-title .button-next:before{
+  border-radius: 0;
+  box-shadow: none;
+  border-top:3px solid white;
+  border-left:3px solid white;
+  -webkit-transform:rotate(-45deg);
+  -webkit-mask-image:none;
+  mask-image:none;
+  top:6px;
+  width:15px;
+  height:15px;
+}
+
+.button-main{
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: rgb(80, 172, 223);
+  text-shadow:none;
+}
+
+select, textarea, input[type="text"], input[type=search], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="tel"], input[type="color"], .input-group{
+  box-shadow: none;
+  border-radius: 0;
+  border-color: rgba(30, 176, 233, 0.31);
+  padding-left: 7px;
+  font-family: "Helvetica Neue", Helvetica, arial, sans-serif;
+  font-weight: 200;
+}
+
+.dropzone, .heading-body{
+  font-weight: 200;
+}
+
+[class*="button"]{
+  background: none;
+  border: none;
+  box-shadow: none;
+  background: rgb(80, 172, 223);
+  text-shadow:none;
+  color: white;
 }

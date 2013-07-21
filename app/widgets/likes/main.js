@@ -8,8 +8,8 @@ Hull.widget('likes', {
     // limit the results to the latest 100
     // pictures liked
     likes: function() {
-      return this.api('hull/me/liked', {
-        order_by: 'created_at DESC',
+      return this.api('me/liked', {
+        order_by: 'created_at ASC',
         limit: 100
       });
     }
@@ -21,6 +21,7 @@ Hull.widget('likes', {
     data.pictures = _.filter(_.pluck(data.likes, 'liked'), function(l) {
       return l && l.type === 'image';
     });
+    // data.pictures = _.reverse(data.pictures)
     return data;
   }
 

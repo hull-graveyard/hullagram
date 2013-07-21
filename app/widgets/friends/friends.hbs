@@ -1,22 +1,21 @@
 {{!
-  Here we use the friends_list widget distributed with hull-js
+  Here we use the friends widget distributed with hull-js
   This is just an override of its main template.
 }}
-
 
 {{#if friends}}
   <ul class="list list-friends">
       {{#friends}}
       <li>
-          <a href="#/users/{{id}}">
+          <a href="#/users/{{uid}}">
               <div class="author">
                   <div class="media cf">
                       <div class="img author-picture">
-                          <img src="{{picture}}">
+                          <img src="{{avatar}}" alt="{{name}}" class="media-object img-round">
                       </div>
                       <div class="bd author-metas">
                           <h3 class="author-title">{{name}}</h3>
-                          <h4 class="author-updated">joined {{fromNow created_at}}</h4>
+                          <h4 class="author-updated">Joined {{fromNow created_at}}</h4>
                       </div>
                   </div>
               </div>

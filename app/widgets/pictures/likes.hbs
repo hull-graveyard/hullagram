@@ -1,7 +1,9 @@
-<div class="list-likes media cf">
-    <i class="icon-heart img"></i>
-    <div class="bd">
-        {{#join likes lastSep=" and "}}<a href="#/users/{{user.id}}">{{user.name}}</a>{{/join}}
-        like this.
-    </div>
-</div>
+{{#if likes}}
+  <div class="list-likes media cf">
+      <i class="icon-heart img"></i>
+      <div class="bd">
+          {{#join likes lastSep=" and "}}<a href="#/users/{{user.id}}">{{user.name}}</a>{{/join}}
+          like this.
+      </div>
+  </div>
+{{/if}}
