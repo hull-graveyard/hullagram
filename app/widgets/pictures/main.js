@@ -45,6 +45,12 @@ Hull.widget('pictures', {
     }
   },
 
+  actions: {
+    back: function() {
+      this.sandbox.emit('hullagram.back')
+    }
+  },
+
   beforeRender: function (data) {
     if (this.options.id) {
       data.single_picture_id = this.options.id;
@@ -52,7 +58,7 @@ Hull.widget('pictures', {
 
     // The activity datasource returns a list of activities (cf. http://alpha.hull.io/docs/api/activities)
     // Here we are only interested in the 'object' inside the activity, which is the Image Object (cf. http://alpha.hull.io/docs/api/resources)
-    data.pictures = _.pluck(data.activity, 'object');
+    data.pictures = this.sandbox.util._.pluck(data.activity, 'object');
   }
 });
 

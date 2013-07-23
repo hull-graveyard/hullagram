@@ -38,24 +38,42 @@ Hull.widget('app', {
 
     // Event triggered by the 'uploader' widget whenever a new picture
     // has been uploaded by the user
-    this.sandbox.on('hullagram.newPicture', _.bind(function(pic) {
+    this.sandbox.on('hullagram.newPicture', function(pic) {
       this.render('new_picture', pic);
-    }, this));
+    }, this);
     return false;
   },
 
   initRouter: function() {
+    var Backbone = Hull.require('backbone'),
+        _        = Hull.require('underscore');
+
 
     var HullagramRouter = Backbone.Router.extend({
+      initialize: function() {
+        this.routesHit = 0;
+        //keep count of number of routes handled by your application
+        Backbone.history.on('route', function() { this.routesHit++; }, this);
+      },
       routes: {
         ':view(/:id)(/:action)' : 'view'
+      },
+      back: function() {
+        console.warn("RoutesHit");
+        if(this.routesHit > 1) {
+          //more than one route hit -> user did not land to current page directly
+          window.history.back();
+        } else {
+          //otherwise go to the home page. Use replaceState if available so
+          //the navigation doesn't create an extra history entry
+          this.navigate('/pictures', { trigger:true, replace:true });
+        }
       }
     });
 
-    var router = new HullagramRouter();
+    var router  = new HullagramRouter();
 
-    router.on('route:view', _.bind(function(view, id, action) {
-      console.log('route_view', arguments)
+    router.on('route:view', function(view, id, action) {
       var tpl = action || view || 'pictures';
       if (!_.include(this.templates, tpl)) {
         tpl = 'pictures';
@@ -66,7 +84,7 @@ Hull.widget('app', {
       // Actual re-rendering of the widget with
       // the template that corresponds to the currentView
       this.render(tpl, { id: id });
-    }, this));
+    }, this);
 
     // Allows other widget to emit events that trigger
     // the navigation to another view
@@ -74,7 +92,19 @@ Hull.widget('app', {
       router.navigate(route, { trigger: true });
     });
 
-    Backbone.history.start();
+    this.sandbox.on('hullagram.back', function() {
+      router.back();
+    });
+
+    setTimeout(function() {
+      Backbone.history.start();
+    }, 200);
+  },
+
+  actions: {
+    back: function() {
+      this.sandbox.emit('hullagram.back')
+    }
   },
 
   beforeRender: function(data) {
@@ -108,6 +138,12 @@ Hull.widget('comment', {
   // to also fetch the list of user who like the picture
   datasources: {
     likes: ':id/likes'
+  },
+
+  actions: {
+    back: function() {
+      this.sandbox.emit('hullagram.back')
+    }
   },
 
   beforeRender: function(data) {
@@ -155,6 +191,7 @@ Hull.widget('comment', {
  * and `provider_name` containing the name of the asked provider
  *
  */
+
 Hull.widget("friends", {
   type: 'Hull',
 
@@ -526,6 +563,12 @@ Hull.widget('pictures', {
     }
   },
 
+  actions: {
+    back: function() {
+      this.sandbox.emit('hullagram.back')
+    }
+  },
+
   beforeRender: function (data) {
     if (this.options.id) {
       data.single_picture_id = this.options.id;
@@ -533,7 +576,7 @@ Hull.widget('pictures', {
 
     // The activity datasource returns a list of activities (cf. http://alpha.hull.io/docs/api/activities)
     // Here we are only interested in the 'object' inside the activity, which is the Image Object (cf. http://alpha.hull.io/docs/api/resources)
-    data.pictures = _.pluck(data.activity, 'object');
+    data.pictures = this.sandbox.util._.pluck(data.activity, 'object');
   }
 });
 
@@ -579,14 +622,11 @@ Hull.widget('profile', {
 /*global Hull:true */
 Hull.widget('share', {
   templates: ['main'],
-  datasources: {
-    pictures: ':id'
-  },
-
-  beforeRender: function(data) {
-  },
 
   actions: {
+    back: function() {
+      this.sandbox.emit('hullagram.back')
+    },
     share: function (elt, evt, data) {
       // Temporary
       var textarea = document.getElementById('share-description'),
@@ -617,13 +657,13 @@ Hull.widget('uploader', {
 
   initialize: function() {
     // Events emitted by the 'upload@hull' widget.
-    this.sandbox.on('hull.upload.send',         _.bind(this.onUploadSend, this));
-    this.sandbox.on('hull.upload.done',         _.bind(this.onUploadDone, this));
-    this.sandbox.on('hull.upload.progressall',  _.bind(this.onUploadProgress, this));
+    this.sandbox.on('hull.upload.send', this.onUploadSend, this);
+    this.sandbox.on('hull.upload.done', this.onUploadDone, this);
+    this.sandbox.on('hull.upload.progressall', this.onUploadProgress, this);
 
     // Events emitted by the 'new_picture' widget.
-    this.sandbox.on('hullagram.pictureSaved', _.bind(this.onPictureSaved, this));
-    this.sandbox.on('hullagram.savingPicture', _.bind(this.onSavingPicture, this));
+    this.sandbox.on('hullagram.pictureSaved', this.onPictureSaved, this);
+    this.sandbox.on('hullagram.savingPicture', this.onSavingPicture, this);
   },
 
   afterRender: function() {
@@ -670,27 +710,27 @@ Hull.widget('uploader', {
     var file = files[0];
     if (file.type && file.type.split("/")[0] === "image") {
       // Create the thumbnail/preview
-      var img = document.createElement("img");
-      var reader = new FileReader();
-      reader.onload = _.bind(function(e) {
+      var img = document.createElement("img"),
+          reader = new FileReader(),
+          self = this;
+      reader.onload = function(e) {
         // Hide the notification message
-        this.$notification
+        self.$notification
           .attr('class', 'notification active fadeOut animation-delay')
           .one('animationend webkitAnimationEnd', function() {
             // All right, the file uploaded is a picture and we were able to
             // preview it...
             // delegate the rest to someone else.
-            this.sandbox.emit('hullagram.newPicture', {
+            self.sandbox.emit('hullagram.newPicture', {
               source_url: file.url,
               name: file.name,
               blob: e.target.result // Thumbnail
             });
 
-          }.bind(this))
+          })
           .find('i').attr('class', 'icon-spinner icon-spin').end()
           .find('p').text('Uploading');
-
-      }, this);
+      };
       reader.readAsDataURL(file);
     }
   }

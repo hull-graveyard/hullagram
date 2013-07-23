@@ -38,24 +38,42 @@ Hull.widget('app', {
 
     // Event triggered by the 'uploader' widget whenever a new picture
     // has been uploaded by the user
-    this.sandbox.on('hullagram.newPicture', _.bind(function(pic) {
+    this.sandbox.on('hullagram.newPicture', function(pic) {
       this.render('new_picture', pic);
-    }, this));
+    }, this);
     return false;
   },
 
   initRouter: function() {
+    var Backbone = Hull.require('backbone'),
+        _        = Hull.require('underscore');
+
 
     var HullagramRouter = Backbone.Router.extend({
+      initialize: function() {
+        this.routesHit = 0;
+        //keep count of number of routes handled by your application
+        Backbone.history.on('route', function() { this.routesHit++; }, this);
+      },
       routes: {
         ':view(/:id)(/:action)' : 'view'
+      },
+      back: function() {
+        console.warn("RoutesHit");
+        if(this.routesHit > 1) {
+          //more than one route hit -> user did not land to current page directly
+          window.history.back();
+        } else {
+          //otherwise go to the home page. Use replaceState if available so
+          //the navigation doesn't create an extra history entry
+          this.navigate('/pictures', { trigger:true, replace:true });
+        }
       }
     });
 
-    var router = new HullagramRouter();
+    var router  = new HullagramRouter();
 
-    router.on('route:view', _.bind(function(view, id, action) {
-      console.log('route_view', arguments)
+    router.on('route:view', function(view, id, action) {
       var tpl = action || view || 'pictures';
       if (!_.include(this.templates, tpl)) {
         tpl = 'pictures';
@@ -66,7 +84,7 @@ Hull.widget('app', {
       // Actual re-rendering of the widget with
       // the template that corresponds to the currentView
       this.render(tpl, { id: id });
-    }, this));
+    }, this);
 
     // Allows other widget to emit events that trigger
     // the navigation to another view
@@ -74,7 +92,19 @@ Hull.widget('app', {
       router.navigate(route, { trigger: true });
     });
 
-    Backbone.history.start();
+    this.sandbox.on('hullagram.back', function() {
+      router.back();
+    });
+
+    setTimeout(function() {
+      Backbone.history.start();
+    }, 200);
+  },
+
+  actions: {
+    back: function() {
+      this.sandbox.emit('hullagram.back')
+    }
   },
 
   beforeRender: function(data) {

@@ -32,6 +32,7 @@
  * and `provider_name` containing the name of the asked provider
  *
  */
+
 Hull.widget("friends", {
   type: 'Hull',
 

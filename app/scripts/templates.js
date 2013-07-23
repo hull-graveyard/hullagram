@@ -7,7 +7,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 
-  buffer += "<header class=\"bar-title\">\n  <a class=\"button-prev\" onclick=\"window.history.back()\">Back</a>\n  <h1 class=\"title\">Comments</h1>\n</header>\n\n"
+  buffer += "<header class=\"bar-title\">\n  <a class=\"button-prev\" data-hull-action=\"back\">Back</a>\n  <h1 class=\"title\">Comments</h1>\n</header>\n\n"
     + "\n\n<div class=\"content\" data-hull-id=\"";
   if (stack1 = helpers.id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
@@ -86,7 +86,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 function program1(depth0,data) {
   
   
-  return "\n  <a class=\"button-prev\" onclick=\"window.history.back()\">Back</a>\n  ";
+  return "\n  <a class=\"button-prev\" data-hull-action=\"back\">Back</a>\n  ";
   }
 
 function program3(depth0,data) {
@@ -139,7 +139,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 
-  buffer += "<header class=\"bar-title\">\n  <a class=\"button-prev\" onclick=\"window.history.back()\">Back</a>\n  <h1 class=\"title\">Share</h1>\n</header>\n<div class=\"content\" data-hull-id=\"";
+  buffer += "<header class=\"bar-title\">\n  <a class=\"button-prev\" data-hull-action=\"back\">Back</a>\n  <h1 class=\"title\">Share</h1>\n</header>\n<div class=\"content\" data-hull-id=\"";
   if (stack1 = helpers.id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -159,7 +159,7 @@ function program1(depth0,data) {
   
   var buffer = "";
   buffer += "\n  "
-    + "\n  <a class=\"button-prev\" onclick=\"window.history.back()\">Back</a>\n  ";
+    + "\n  <a class=\"button-prev\" data-hull-action=\"back\">Back</a>\n  ";
   return buffer;
   }
 

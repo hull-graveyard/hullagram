@@ -72,7 +72,7 @@ header + .content-padded { padding-top: 55px; }
       height:100%;
       padding: 15px 15px 0 15px;
   }
-    .tab-item a i{margin-top:12px;font-size:1.75em;font-weight:normal;}
+    .tab-item a i{ font-size:1.75em; font-weight:normal; }
   .tab-item.active{
     box-shadow:none;
   }

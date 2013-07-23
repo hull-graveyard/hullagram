@@ -7,7 +7,7 @@
 <header class="bar-title">
   {{#ifEqual currentView "users"}}
   {{! If the profile displayed... is NOT mine, we add a Back button }}
-  <a class="button-prev" onclick="window.history.back()">Back</a>
+  <a class="button-prev" data-hull-action="back">Back</a>
   {{else}}
   {{! If the profile displayed... is mine, we add a logout button }}
   <h1 class="title">My Profile</h1>

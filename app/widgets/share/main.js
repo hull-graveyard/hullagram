@@ -1,14 +1,11 @@
 /*global Hull:true */
 Hull.widget('share', {
   templates: ['main'],
-  datasources: {
-    pictures: ':id'
-  },
-
-  beforeRender: function(data) {
-  },
 
   actions: {
+    back: function() {
+      this.sandbox.emit('hullagram.back')
+    },
     share: function (elt, evt, data) {
       // Temporary
       var textarea = document.getElementById('share-description'),

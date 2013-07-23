@@ -10,13 +10,13 @@ Hull.widget('uploader', {
 
   initialize: function() {
     // Events emitted by the 'upload@hull' widget.
-    this.sandbox.on('hull.upload.send',         _.bind(this.onUploadSend, this));
-    this.sandbox.on('hull.upload.done',         _.bind(this.onUploadDone, this));
-    this.sandbox.on('hull.upload.progressall',  _.bind(this.onUploadProgress, this));
+    this.sandbox.on('hull.upload.send', this.onUploadSend, this);
+    this.sandbox.on('hull.upload.done', this.onUploadDone, this);
+    this.sandbox.on('hull.upload.progressall', this.onUploadProgress, this);
 
     // Events emitted by the 'new_picture' widget.
-    this.sandbox.on('hullagram.pictureSaved', _.bind(this.onPictureSaved, this));
-    this.sandbox.on('hullagram.savingPicture', _.bind(this.onSavingPicture, this));
+    this.sandbox.on('hullagram.pictureSaved', this.onPictureSaved, this);
+    this.sandbox.on('hullagram.savingPicture', this.onSavingPicture, this);
   },
 
   afterRender: function() {
@@ -63,27 +63,27 @@ Hull.widget('uploader', {
     var file = files[0];
     if (file.type && file.type.split("/")[0] === "image") {
       // Create the thumbnail/preview
-      var img = document.createElement("img");
-      var reader = new FileReader();
-      reader.onload = _.bind(function(e) {
+      var img = document.createElement("img"),
+          reader = new FileReader(),
+          self = this;
+      reader.onload = function(e) {
         // Hide the notification message
-        this.$notification
+        self.$notification
           .attr('class', 'notification active fadeOut animation-delay')
           .one('animationend webkitAnimationEnd', function() {
             // All right, the file uploaded is a picture and we were able to
             // preview it...
             // delegate the rest to someone else.
-            this.sandbox.emit('hullagram.newPicture', {
+            self.sandbox.emit('hullagram.newPicture', {
               source_url: file.url,
               name: file.name,
               blob: e.target.result // Thumbnail
             });
 
-          }.bind(this))
+          })
           .find('i').attr('class', 'icon-spinner icon-spin').end()
           .find('p').text('Uploading');
-
-      }, this);
+      };
       reader.readAsDataURL(file);
     }
   }

@@ -8,6 +8,12 @@ Hull.widget('comment', {
     likes: ':id/likes'
   },
 
+  actions: {
+    back: function() {
+      this.sandbox.emit('hullagram.back')
+    }
+  },
+
   beforeRender: function(data) {
     data.picture_id = this.options.id;
   }

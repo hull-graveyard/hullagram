@@ -27,16 +27,15 @@
     <script src="//hull-js.s3.amazonaws.com/develop/hull.js"></script>
 
     <!-- build:js application.js -->
-    <script src="./components/underscore/underscore.js"></script>
-    <script src="./components/backbone/backbone.js"></script>
     <script src="scripts/templates.js"></script>
     <script src="scripts/widgets.js"></script>
     <!-- endbuild -->
 
     <script type='text/javascript'>
-    var app = Hull.init({
+    Hull.init({
       appId: '5103a56f93e74e3a1f000012',
-      orgUrl: 'http://hull-demos.hullapp.io'
+      orgUrl: 'http://hull-demos.hullapp.io',
+      debug: true
     });
     </script>
 
