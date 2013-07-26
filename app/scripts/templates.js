@@ -660,29 +660,24 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["Hull"]["templates"]["share/main"] = function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this, blockHelperMissing=helpers.blockHelperMissing;
+  var buffer = "", stack1, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, stack2, options;
-  buffer += "\n  <div class=\"share-picture\">\n\n    <div class=\"media\">\n      <div class=\"img\">\n        <img src=\"";
+  var buffer = "", stack1, options;
+  buffer += "\n  <div class=\"share-picture\">\n    <div class=\"media\">\n      <div class=\"img\">\n        <img src=\"";
   options = {hash:{},data:data};
-  buffer += escapeExpression(((stack1 = helpers.imageUrl || depth0.imageUrl),stack1 ? stack1.call(depth0, depth0.id, "small", options) : helperMissing.call(depth0, "imageUrl", depth0.id, "small", options)))
-    + "\" alt=\"\">\n      </div>\n      <div class=\"bd\">\n        <textarea id=\"share-description\" rows=\"3\" placeholder=\"Write something\">";
-  if (stack2 = helpers.description) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.description; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "</textarea>\n      </div>\n    </div>\n\n    <a class=\"button button-block button-share\" data-hull-action=\"share\" data-hull-network=\"twitter\" data-hull-source_url=\"";
+  buffer += escapeExpression(((stack1 = helpers.imageUrl || depth0.imageUrl),stack1 ? stack1.call(depth0, ((stack1 = depth0.picture),stack1 == null || stack1 === false ? stack1 : stack1.id), "small", options) : helperMissing.call(depth0, "imageUrl", ((stack1 = depth0.picture),stack1 == null || stack1 === false ? stack1 : stack1.id), "small", options)))
+    + "\" alt=\"\">\n      </div>\n      <div class=\"bd\">\n        <textarea id=\"share-description\" rows=\"3\" placeholder=\"Write something\">"
+    + escapeExpression(((stack1 = ((stack1 = depth0.picture),stack1 == null || stack1 === false ? stack1 : stack1.description)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</textarea>\n      </div>\n    </div>\n\n    <a class=\"button button-block button-share\" data-hull-action=\"share\" data-hull-network=\"twitter\" data-hull-source-url=\"";
   options = {hash:{},data:data};
-  buffer += escapeExpression(((stack1 = helpers.imageUrl || depth0.imageUrl),stack1 ? stack1.call(depth0, depth0.id, "medium", options) : helperMissing.call(depth0, "imageUrl", depth0.id, "medium", options)))
-    + "\">\n      <i class=\"icon-twitter\"></i>\n      Share on Twitter\n    </a>\n\n  </div>\n";
+  buffer += escapeExpression(((stack1 = helpers.imageUrl || depth0.imageUrl),stack1 ? stack1.call(depth0, ((stack1 = depth0.picture),stack1 == null || stack1 === false ? stack1 : stack1.id), "medium", options) : helperMissing.call(depth0, "imageUrl", ((stack1 = depth0.picture),stack1 == null || stack1 === false ? stack1 : stack1.id), "medium", options)))
+    + "\">\n      <i class=\"icon-twitter\"></i>\n      Share on Twitter\n    </a>\n  </div>\n";
   return buffer;
   }
 
-  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
-  if (stack1 = helpers.pictures) { stack1 = stack1.call(depth0, options); }
-  else { stack1 = depth0.pictures; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  if (!helpers.pictures) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
+  stack1 = helpers['if'].call(depth0, depth0.picture, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n";
   return buffer;

@@ -79,7 +79,6 @@ Hull.widget('app', {
         tpl = 'pictures';
       }
       this.currentView = tpl;
-      console.log('Router', tpl)
 
       // Actual re-rendering of the widget with
       // the template that corresponds to the currentView
@@ -103,7 +102,7 @@ Hull.widget('app', {
 
   actions: {
     back: function() {
-      this.sandbox.emit('hullagram.back')
+      this.sandbox.emit('hullagram.back');
     }
   },
 

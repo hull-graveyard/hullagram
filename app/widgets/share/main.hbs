@@ -1,19 +1,17 @@
-{{#pictures}}
+{{#if picture}}
   <div class="share-picture">
-
     <div class="media">
       <div class="img">
-        <img src="{{imageUrl id "small"}}" alt="">
+        <img src="{{imageUrl picture.id "small"}}" alt="">
       </div>
       <div class="bd">
-        <textarea id="share-description" rows="3" placeholder="Write something">{{description}}</textarea>
+        <textarea id="share-description" rows="3" placeholder="Write something">{{picture.description}}</textarea>
       </div>
     </div>
 
-    <a class="button button-block button-share" data-hull-action="share" data-hull-network="twitter" data-hull-source_url="{{imageUrl id "medium"}}">
+    <a class="button button-block button-share" data-hull-action="share" data-hull-network="twitter" data-hull-source-url="{{imageUrl picture.id "medium"}}">
       <i class="icon-twitter"></i>
       Share on Twitter
     </a>
-
   </div>
-{{/pictures}}
+{{/if}}

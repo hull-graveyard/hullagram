@@ -1,10 +1,9 @@
 Hull.widget('profile', {
-
   templates: ['main'],
 
   datasources: {
     // We fetch a specific user via its id
-    user:     ':id',
+    user: ':id',
     // And its friends...
     friends:  ':id/friends'
   },
@@ -17,9 +16,8 @@ Hull.widget('profile', {
   beforeRender: function (data) {
     // Is it me ?
     data.isMe = data.user.id === data.me.id;
-    data.user.stats.images = data.user.stats.images || "0"
-    data.user.stats.liked = data.user.stats.liked || "0"
+    data.user.stats.images = data.user.stats.images || '0';
+    data.user.stats.liked = data.user.stats.liked || '0';
   }
-
 });
 
