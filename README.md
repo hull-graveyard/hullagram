@@ -127,13 +127,11 @@ Install [node.js](http://nodejs.org) (Only used for building the app, not needed
 It's amazing so you should do it anyways.
 
     [sudo] npm install grunt-cli -g
-    [sudo] npm install bower -g
 
 then install grunt and it's modules in the project's folder.
 
     cd hullagram/
     npm install
-    bower install
 
 -----------------------
 # Running the app
