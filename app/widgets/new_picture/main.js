@@ -7,9 +7,8 @@ Hull.widget('new_picture', {
   },
 
   actions: {
-    send: function (evt, elt, data) {
-      debugger
-      $(elt).addClass('disabled-state');
+    send: function (event, options) {
+      $(options.el).addClass('disabled-state');
       var textarea = document.getElementById('picture-description');
 
       this.sandbox.emit('hullagram.savingPicture');

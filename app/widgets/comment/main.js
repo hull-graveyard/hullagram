@@ -10,7 +10,7 @@ Hull.widget('comment', {
 
   actions: {
     back: function() {
-      this.sandbox.emit('hullagram.back')
+      this.sandbox.emit('hullagram.back');
     }
   },
 

@@ -92,8 +92,8 @@ Hull.widget("friends", {
       if( this.loggedIn()[this.provider] || (this.provider==="hull" && (this.loggedIn() || this.getUserId()!=="me"))){
         this.request(this.provider, identities, this.options).then(this.sandbox.util._.bind(function(res) {
 
-          var serialized = this.sandbox.util._.bind(this.serializers[self.provider],this,res,this.options)
-          var friends = serialized().slice(0, this.options.limit)
+          var serialized = this.sandbox.util._.bind(this.serializers[self.provider],this,res,this.options);
+          var friends = serialized().slice(0, this.options.limit);
           deferred.resolve(friends);
 
         }, this));
@@ -205,7 +205,6 @@ Hull.widget("friends", {
 
   serializers: {
     hull: function(res) {
-      console.log(res)
       return this.sandbox.util._.map(res, function(f) {
         return {
           provider: 'hull',
@@ -247,7 +246,7 @@ Hull.widget("friends", {
           name: f.full_name,
           avatar: f.profile_picture,
           uid: f.id
-        }
+        };
       });
     },
 
