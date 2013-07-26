@@ -57,6 +57,10 @@ Hull.widget('pictures', {
 
     // The activity datasource returns a list of activities (cf. http://alpha.hull.io/docs/api/activities)
     // Here we are only interested in the 'object' inside the activity, which is the Image Object (cf. http://alpha.hull.io/docs/api/resources)
-    data.pictures = this.sandbox.util._.pluck(data.activity, 'object');
+    var pictures = this.sandbox.util._.pluck(data.activity, 'object');
+    // It occured that some activities may be attached to a null object...
+    data.pictures = this.sandbox.util._.filter(pictures, function (p) {
+      return p;
+    });
   }
 });
