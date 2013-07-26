@@ -2,7 +2,6 @@
 // the public activity feed of the app.
 
 Hull.widget('pictures', {
-
   templates: ['main', 'picture', 'likes'],
   datasources: {
     activity: function() {
@@ -47,7 +46,7 @@ Hull.widget('pictures', {
 
   actions: {
     back: function() {
-      this.sandbox.emit('hullagram.back')
+      this.sandbox.emit('hullagram.back');
     }
   },
 
@@ -61,4 +60,3 @@ Hull.widget('pictures', {
     data.pictures = this.sandbox.util._.pluck(data.activity, 'object');
   }
 });
-

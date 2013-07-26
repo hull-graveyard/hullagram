@@ -1,3 +1,7 @@
+body, input, textarea {
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
 
 .bar-title{
   background-image: none;
@@ -6,9 +10,9 @@
 }
 
 .bar-title .title{
-  font-weight: 500;
-  font-size:16px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  font-size: 16px;
+  font-weight: 600;
+  text-shadow: none;
 }
 
 .island{
@@ -28,6 +32,10 @@
   font-weight: 200;
 }
 
+.bar-title .button {
+  margin-top: 2px;
+}
+
 .tab-item.active{
   background-color: #0072B3;
 }
@@ -40,16 +48,14 @@
 .chevron:after{
   top:13px;
 }
+
 .chevron:before{
   top:6px;
 }
+
 .chevron:before, .chevron:after{
   height: 1px;
   background: rgb(80, 172, 223);
-}
-
-.bar-title .button-prev:before{
-  background: none;
 }
 
 .bar-title [class*="button"]{
@@ -57,24 +63,40 @@
   box-shadow: none;
   background: none;
 }
-.bar-title .button-prev{
-  border-radius: none;
-  border-radius: 0;
-  border-color:white; 
-  margin-left: 13px;
+
+.bar-title .button-prev  {
+  border: 0;
+  box-shadow: none;
+  margin-top: 6px;
+  margin-left: 8px;
+  padding: 0 0 0 20px;
+  padding-left: 20px;
+  padding-right: 0;
 }
 
-.bar-title .button-prev:before, .bar-title .button-next:before{
-  border-radius: 0;
-  box-shadow: none;
-  border-top:3px solid white;
-  border-left:3px solid white;
-  -webkit-transform:rotate(-45deg);
+.bar-title .button-prev:before {
   -webkit-mask-image:none;
   mask-image:none;
-  top:6px;
-  width:15px;
-  height:15px;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  width: 11px;
+  height: 11px;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
+  left: 3px;
+  top: 4px;
+  -webkit-transform: rotate(-45deg);
+}
+
+.bar-title .button-prev:active {
+  background: none;
+  opacity: 0.7;
+}
+
+.bar-title .button-prev:active:before {
+  background: none;
+  box-shadow: none;
 }
 
 .button-main{
@@ -90,8 +112,6 @@ select, textarea, input[type="text"], input[type=search], input[type="password"]
   border-radius: 0;
   border-color: rgba(30, 176, 233, 0.31);
   padding-left: 7px;
-  font-family: "Helvetica Neue", Helvetica, arial, sans-serif;
-  font-weight: 200;
 }
 
 .dropzone, .heading-body{

@@ -40,7 +40,7 @@ body, .content { position: static; } /* #app-container is for junior */
 header + .content,
 .bar-footer + .content { padding-top: 44px;padding-bottom:50px; }
 header + .content-padded { padding-top: 55px; }
-.bar-title .title + [class*="button"]:last-child { top: 5px; } /* From ratchet.css, overridden by junior.css */
+/*.bar-title .title + [class*="button"]:last-child { top: 7px; } [> From ratchet.css, overridden by junior.css <]*/
 
 .bar-title .title{
   -webkit-box-sizing:border-box;
@@ -207,7 +207,7 @@ header + .content-padded { padding-top: 55px; }
 
 /* Disabled state */
 .disabled-state{
-  opacity:.5;
+  opacity: .4;
   pointer-events:none;
 }
 
@@ -649,11 +649,11 @@ header + .content-padded { padding-top: 55px; }
   background-color: transparent;
   margin: 0 5px;
 }
+
 .list-actions .segmented-controller li{
   box-shadow:none;
   border-left-color:transparent;
   margin: 0 5px;
-  /*background: #eee;*/
   border-radius: 5px;
 }
 

@@ -79,7 +79,6 @@ Hull.widget('app', {
         tpl = 'pictures';
       }
       this.currentView = tpl;
-      console.log('Router', tpl)
 
       // Actual re-rendering of the widget with
       // the template that corresponds to the currentView
@@ -103,7 +102,7 @@ Hull.widget('app', {
 
   actions: {
     back: function() {
-      this.sandbox.emit('hullagram.back')
+      this.sandbox.emit('hullagram.back');
     }
   },
 
@@ -142,7 +141,7 @@ Hull.widget('comment', {
 
   actions: {
     back: function() {
-      this.sandbox.emit('hullagram.back')
+      this.sandbox.emit('hullagram.back');
     }
   },
 
@@ -251,8 +250,8 @@ Hull.widget("friends", {
       if( this.loggedIn()[this.provider] || (this.provider==="hull" && (this.loggedIn() || this.getUserId()!=="me"))){
         this.request(this.provider, identities, this.options).then(this.sandbox.util._.bind(function(res) {
 
-          var serialized = this.sandbox.util._.bind(this.serializers[self.provider],this,res,this.options)
-          var friends = serialized().slice(0, this.options.limit)
+          var serialized = this.sandbox.util._.bind(this.serializers[self.provider],this,res,this.options);
+          var friends = serialized().slice(0, this.options.limit);
           deferred.resolve(friends);
 
         }, this));
@@ -364,7 +363,6 @@ Hull.widget("friends", {
 
   serializers: {
     hull: function(res) {
-      console.log(res)
       return this.sandbox.util._.map(res, function(f) {
         return {
           provider: 'hull',
@@ -406,7 +404,7 @@ Hull.widget("friends", {
           name: f.full_name,
           avatar: f.profile_picture,
           uid: f.id
-        }
+        };
       });
     },
 
@@ -448,15 +446,14 @@ Hull.widget('hullagram', {
 //--------
 
 
-/*global Hull:true _:true */
-Hull.widget('likes', {
+/*global Hull:true */
 
+Hull.widget('likes', {
   templates: ['main'],
 
   datasources: {
-    // Fetch the current user likes
-    // limit the results to the latest 100
-    // pictures liked
+    // Fetch the current user likes limit the results to the latest 100 pictures
+    // liked
     likes: function() {
       return this.api('me/liked', {
         order_by: 'created_at ASC',
@@ -466,15 +463,14 @@ Hull.widget('likes', {
   },
 
   beforeRender: function(data) {
+    var _ = this.sandbox.util._;
+
     // the Likes api returns the liked objects wrapped in the 'liked' key
     // cf. http://alpha.hull.io/docs/api/likes
     data.pictures = _.filter(_.pluck(data.likes, 'liked'), function(l) {
       return l && l.type === 'image';
     });
-    // data.pictures = _.reverse(data.pictures)
-    return data;
   }
-
 });
 
 
@@ -492,9 +488,8 @@ Hull.widget('new_picture', {
   },
 
   actions: {
-    send: function (evt, elt, data) {
-      debugger
-      $(elt).addClass('disabled-state');
+    send: function (event, options) {
+      $(options.el).addClass('disabled-state');
       var textarea = document.getElementById('picture-description');
 
       this.sandbox.emit('hullagram.savingPicture');
@@ -520,7 +515,6 @@ Hull.widget('new_picture', {
 // the public activity feed of the app.
 
 Hull.widget('pictures', {
-
   templates: ['main', 'picture', 'likes'],
   datasources: {
     activity: function() {
@@ -565,7 +559,7 @@ Hull.widget('pictures', {
 
   actions: {
     back: function() {
-      this.sandbox.emit('hullagram.back')
+      this.sandbox.emit('hullagram.back');
     }
   },
 
@@ -583,17 +577,15 @@ Hull.widget('pictures', {
 
 
 
-
 //--------
 
 
 Hull.widget('profile', {
-
   templates: ['main'],
 
   datasources: {
     // We fetch a specific user via its id
-    user:     ':id',
+    user: ':id',
     // And its friends...
     friends:  ':id/friends'
   },
@@ -606,10 +598,9 @@ Hull.widget('profile', {
   beforeRender: function (data) {
     // Is it me ?
     data.isMe = data.user.id === data.me.id;
-    data.user.stats.images = data.user.stats.images || "0"
-    data.user.stats.liked = data.user.stats.liked || "0"
+    data.user.stats.images = data.user.stats.images || '0';
+    data.user.stats.liked = data.user.stats.liked || '0';
   }
-
 });
 
 
@@ -620,24 +611,29 @@ Hull.widget('profile', {
 
 
 /*global Hull:true */
+
 Hull.widget('share', {
   templates: ['main'],
 
+  datasources: {
+    picture: ':id'
+  },
+
   actions: {
     back: function() {
-      this.sandbox.emit('hullagram.back')
+      this.sandbox.emit('hullagram.back');
     },
-    share: function (elt, evt, data) {
-      // Temporary
-      var textarea = document.getElementById('share-description'),
-          description = textarea.value,
-          params = window.location.protocol+data.source_url+'&text='+description+'&via=hull',
-          url = 'https://twitter.com/share?url='+params;
+
+    share: function (event, options) {
+      var textarea = document.getElementById('share-description');
+      var description = textarea.value;
+      var params = window.location.protocol + options.data.sourceUrl + '&text=' + description + '&via=hull';
+      var url = 'https://twitter.com/share?url=' + params;
+
       window.open(url);
     }
   }
 });
-
 
 
 

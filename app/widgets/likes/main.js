@@ -1,12 +1,11 @@
-/*global Hull:true _:true */
-Hull.widget('likes', {
+/*global Hull:true */
 
+Hull.widget('likes', {
   templates: ['main'],
 
   datasources: {
-    // Fetch the current user likes
-    // limit the results to the latest 100
-    // pictures liked
+    // Fetch the current user likes limit the results to the latest 100 pictures
+    // liked
     likes: function() {
       return this.api('me/liked', {
         order_by: 'created_at ASC',
@@ -16,13 +15,12 @@ Hull.widget('likes', {
   },
 
   beforeRender: function(data) {
+    var _ = this.sandbox.util._;
+
     // the Likes api returns the liked objects wrapped in the 'liked' key
     // cf. http://alpha.hull.io/docs/api/likes
     data.pictures = _.filter(_.pluck(data.likes, 'liked'), function(l) {
       return l && l.type === 'image';
     });
-    // data.pictures = _.reverse(data.pictures)
-    return data;
   }
-
 });
