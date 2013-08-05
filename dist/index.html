@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="application.css">
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="//hull-js.s3.amazonaws.com/develop/hull.js"></script>
+    <script src="//hull-js.s3.amazonaws.com/0.6.5/hull.js"></script>
 
     <script src="application.js"></script>
 
