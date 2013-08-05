@@ -179,7 +179,7 @@ Build your app for deployement, and commit the compiled version:
 
 Deploy your app to heroku:
 
-    git subtree push --prefix dist git@heroku.com:my-own-hullagram.git master
+    git push git@heroku.com:my-own-hullagram.git `git subtree split --prefix dist deploy`:master --force
     open http://my-own-hullagram.herokuapp.com
 
 
