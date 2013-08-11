@@ -276,7 +276,7 @@ function program5(depth0,data) {
   buffer += "\n";
   stack1 = helpers['if'].call(depth0, depth0.comments, {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n<nav>\n    <form class=\"post-comment media cf\">\n        <a class=\"button button-main button-block imgExt\" data-hull-action=\"comment\">Send</a>\n        <div class=\"bd\">\n          <textarea autofocus=\"autofocus\" placeholder=\"Write something\"></textarea>\n        </div>\n    </form>\n</nav>\n\n";
+  buffer += "\n\n<nav class=\"hull-comments__form\">\n    <form class=\"post-comment media cf\">\n        <a class=\"button button-main button-block imgExt\" data-hull-action=\"comment\">Send</a>\n        <div class=\"bd\">\n          <textarea name=\"description\" autofocus=\"autofocus\" placeholder=\"Write something\"></textarea>\n        </div>\n    </form>\n</nav>\n\n";
   return buffer;
   };
 
