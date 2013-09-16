@@ -6,7 +6,6 @@ This project is built on the [Hull platform](http://hull.io), with [Aura](github
 
 Implement cool features (see the last paragraph for ideas), contribute to this repo and we'll give you an early access to Hull so you can build and deploy your own apps !
 
-
 -----------------------
 # Hullagram
 
@@ -15,7 +14,6 @@ This is a fully contained demo of what you can achieve with [hull](http://hull.i
 It's somewhat of a clone of Instagram. [View demo](http://gram.hull.io/)
 
 Currently, we use [Ratchet](http://maker.github.com/ratchet/), so it will work only on Webkit browsers, iOS and Android.
-
 
 * Login with Twitter
 * Upload photos
@@ -36,29 +34,27 @@ Linux should mostly work the same.
 
 Hullagram is built around the following apis of Hull
 
-* [Activities](http://hull.io/docs/api/activities)
-* [Resources](http://hull.io/docs/api/resources/)
-* [Comments](http://hull.io/docs/api/comments/)
-* [Likes](http://hull.io/docs/api/likes/)
-* [Friendships](http://hull.io/docs/api/friendships/)
+* [Activities](http://hull.io/docs/api#endpoint-activity)
+* [Resources](http://hull.io/docs/api#endpoint-resources)
+* [Comments](http://hull.io/docs/api#endpoint-comments)
+* [Likes](http://hull.io/docs/api#endpoint-likes)
+* [Friendships](http://hull.io/docs/api#endpoint-friends)
 
-The code is a mix of [custom widgets](http://hull.io/docs/widgets/creating_widgets/) and [packaged widgets](http://hull.io/docs/widgets/packaged_widgets/) distributed via hull.
-Most of the packaged widgets are skinned by [overriding default templates](http://hull.io/docs/widgets/overriding_templates/)
+The code is a mix of [custom components](http://hull.io/docs/hull_js#creating-a-component) and [packaged components](http://hull.io/docs/components) distributed via hull.
+Most of the packaged components are skinned by [overriding default templates](http://hull.io/docs/tutorials/how_to_customize_templates)
 
-## Top level widgets
+## Top level components
 
-You can find an introduction on how Hull widgets work [here](http://hull.io/docs/widgets/introduction/).
+You can find an introduction on how Hull components work [here](http://hull.io/docs/components).
 
-The document body initially contains only 2 widgets :
+The document body initially contains only 2 components :
 
-* [hullagram](app/widgets/hullagram/main.hbs) is a container that displays the login screen if the current user is not connected, and the [app](app/widgets/app/main.js) widget if he is.
+* [hullagram](app/widgets/hullagram/main.hbs) is a container that displays the login screen if the current user is not connected, and the [app](app/widgets/app/main.js) component if he is.
 * [uploader](app/widgets/uploader/main.js) is used to display overlay notifications during file uploads.
 
-Then when the user is connected via Twitter, the [app](app/widgets/app/main.js) widget take over the whole page and starts to act as the main controller.
-
+Then when the user is connected via Twitter, the [app](app/widgets/app/main.js) component take over the whole page and starts to act as the main controller.
 
 ## Screens
-
 
 ### \#/pictures
 
@@ -66,31 +62,31 @@ The first screen is the public activity feed of the app.
 
 It is implemented in the [pictures widget](app/widgets/pictures/main.js)
 
-The data is fetched from the [Activities API](http://hull.io/docs/api/activities)
+The data is fetched from the [Activities API](http://hull.io/docs/api#endpoint-activity)
 
-The like buttons & like counts on the images comme from a widget distributed with hull (like_button@hull) and that is just skinned here
+The like buttons & like counts on the images comme from a component distributed with hull (like_button@hull) and that is just skinned here
 
 ### \#/likes
 
 The pictures displayed are those liked by the current user.
 
-It is implemented in the [likes widget](app/widgets/likes/main.js)
+It is implemented in the [likes component](app/widgets/likes/main.js)
 
-The data is fetched from the [Likes API](http://hull.io/docs/api/likes)
+The data is fetched from the [Likes API](http://hull.io/docs/api#endpoint-likes)
 
 ### \#/friends
 
 Here we display the list of people that the current user follows on Twitter that also have a profile on the app.
 
-We use the [packaged widgets](http://hull.io/docs/widgets/packaged_widgets/) `friends_list@hull` and just override its [main template](app/widgets/friends_list/friends_list.hbs)
+We use the [packaged components](http://hull.io/docs/components) `friends_list@hull` and just override its [main template](app/widgets/friends_list/friends_list.hbs)
 
 ### \#/profile
 
-Just displaying a user profile, the widget is [here](app/widgets/profile)
+Just displaying a user profile, the component is [here](app/widgets/profile)
 
 ### \#/comments
 
-Comments use the packaged widget comments@hull, with a [local template override](app/widgets/comments/comments.hbs).
+Comments use the packaged component comments@hull, with a [local template override](app/widgets/comments/comments.hbs).
 
 
 ## Taking pictures
@@ -99,20 +95,18 @@ We use the apis available on iOS6+ to have access to the camera, and a little tr
 
     <input type="file" name="file" accept="image/*" capture="camera">
 
-
 ### Upload
 
-The pictures are then uploaded to a [HullStore](http://hull.io/docs/services/hull_store/) (wich is an S3 bucket with CORS activated) via the packaged `upload@hull` widget.
+The pictures are then uploaded to a [HullStore](http://hull.io/docs/services#hull-store) (wich is an S3 bucket with CORS activated) via the packaged `upload@hull` component.
 
-The [uploader widget](app/widgets/uploader) then reacts to events emmited by the `upload@hull` widget to display upload status info. (by the way, it's a good example of the way widgets are supposed to interact in a widgets based [aura](https://github.com/aurajs/aura) / [hull](http://hull.io) app).
+The [uploader component](app/widgets/uploader) then reacts to events emmited by the `upload@hull` component to display upload status info. (by the way, it's a good example of the way components are supposed to interact in a components based [aura](https://github.com/aurajs/aura) / [hull](http://hull.io) app).
 
 
 ### Publication
 
-Once the widget is uploaded, the user gets a chance to review and describe it before its actual publication.
+Once the component is uploaded, the user gets a chance to review and describe it before its actual publication.
 
-Confirming the publication then stores the picture as an [Image](http://hull.io/docs/api/resources/) that belongs to the user.
-
+Confirming the publication then stores the picture as an [Image](http://hull.io/docs/api#endpoint-resources) that belongs to the user.
 
 -----------------------
 # Installing
@@ -140,7 +134,6 @@ then install grunt and it's modules in the project's folder.
 
     grunt server
 
-
 -----------------------
 # Deploying the app
 
@@ -150,19 +143,17 @@ Go to [your org's dashboard](http://accounts.alpha.hullapp.io) and setup a few s
 
 Required services :
 
-* A [Twitter App](http://hull.io/docs/services/twitter/) to setup auth
-* A [Hull store](http://hull.io/docs/services/hull_store/) to store the uploaded images
+* A [Twitter App](http://hull.io/docs/services#twitter) to setup auth
+* A [Hull store](http://hull.io/docs/services#hull-store) to store the uploaded images
 
 Optional anlytics services :
 
-* [Mixpanel](http://hull.io/docs/services/mixpanel/) and / or
-* [Google Analytics](http://hull.io/docs/services/google_analytics/)
+* [Mixpanel](http://hull.io/docs/services#mixpanel) and / or
+* [Google Analytics](http://hull.io/docs/services#google-analytics)
 
 Then create a new hull app.
 
 _Don't forget to whitelist your domains and to setup your `appId` and `orgUrl`in the Hull.init method (which is in located in the [index.html](app/index.html#L33-L38) file)._
-
-
 
 ### Deployment on Heroku
 
@@ -181,9 +172,6 @@ Deploy your app to heroku:
 
     git push git@heroku.com:my-own-hullagram.git `git subtree split --prefix dist deploy`:master --force
     open http://my-own-hullagram.herokuapp.com
-
-
-
 
 -----------------------
 # Next steps
