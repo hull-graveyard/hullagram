@@ -625,7 +625,7 @@ function program5(depth0,data) {
   if (stack2 = helpers.id) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.id; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "/share\" class=\"\"> Share \n          <i class=\"icon-share-alt\"> </i>\n        </a>\n      </li>\n    </ul>\n  </div>\n</li>\n";
+    + "/share\" class=\"\"> Share \n          <i class=\"icon-share-alt\"> </i>\n        </a>\n      </li>\n      <li class=\"tab-item\">\n        <a href=\"#\">\n          <div data-hull-widget=\"uload\"></div>\n          <i class=\"icon-camera icon-2x\"></i>\n          <div class=\"tab-label\">New picture</div>\n        </a>\n      </li>      \n    </ul>\n  </div>\n</li>\n";
   return buffer;
   };
 

@@ -1,0 +1,33 @@
+{{#upload_policy}}
+  <form action="{{url}}" method="post" enctype="multipart/form-data" class="hull_upload">
+
+    {{#key_value params}}
+      <input type="hidden" name="{{key}}" value="{{value}}"/>
+    {{/key_value}}
+
+    <div class="dropzone well hidden-phone hidden-phone-tablet" height="100px;" width="100px;">Drop an image here</div>
+
+    <input type="hidden" name="Filename" value=""/>
+    <input type="hidden" name="Content-Type" value=""/>
+    <input type="hidden" name="name" value=""/>
+
+    <div class="fileupload-buttonbar row-fluid">
+      <div class='span12'>
+        {{> upload.file_single}}
+      </div>
+    </div>
+
+    <div class="fileupload-progress fade row-fluid">
+      <div class='span12'>
+        <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+          <div class="bar" style="width:0%;"></div>
+        </div>
+        <div class="progress-extended">&nbsp;</div>
+      </div>
+    </div>
+
+
+    <div class='error'></div>
+    <div class='filescontainer'></div>
+  </form>
+{{/upload_policy}}
