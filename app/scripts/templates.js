@@ -53,7 +53,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<nav class=\"bar-tab\">\n  <ul class=\"tab-inner\">\n    <li class=\"tab-item pictures share comments\">\n      <a href=\"#/pictures\">\n        <i class=\"icon-home icon-2x\"></i>\n        <div class=\"tab-label\">Home</div>\n      </a>\n    </li>\n    <li class=\"tab-item likes\">\n      <a href=\"#/likes\">\n        <i class=\"icon-heart icon-2x\"></i>\n        <div class=\"tab-label\">Likes</div>\n      </a>\n    </li>\n    <li class=\"tab-item\">\n      <a href=\"#\">\n        <div data-hull-widget=\"upload@hull\"></div>\n        <i class=\"icon-camera icon-2x\"></i>\n        <div class=\"tab-label\">New picture</div>\n      </a>\n    </li>\n    <li class=\"tab-item friends users\">\n      <a href=\"#/friends\">\n        <i class=\"icon-group icon-2x\"></i>\n        <div class=\"tab-label\">My friends</div>\n      </a>\n    </li>\n    <li class=\"tab-item profile\">\n      <a href=\"#/profile\">\n        <i class=\"icon-user icon-2x\"></i>\n        <div class=\"tab-label\">Me</div>\n      </a>\n    </li>\n  </ul>\n</nav>\n";
+  return "<nav class=\"bar-tab\">\n  <ul class=\"tab-inner\">\n    <li class=\"tab-item pictures share comments\">\n      <a href=\"#/pictures\">\n        <i class=\"icon-home icon-2x\"></i>\n        <div class=\"tab-label\">Home</div>\n      </a>\n    </li>\n    <li class=\"tab-item likes\">\n      <a href=\"#/likes\">\n        <i class=\"icon-heart icon-2x\"></i>\n        <div class=\"tab-label\">Likes</div>\n      </a>\n    </li>\n    <li class=\"tab-item\">\n      <a href=\"#\">\n        <div data-hull-widget=\"uload\"></div>\n        <i class=\"icon-camera icon-2x\"></i>\n        <div class=\"tab-label\">New picture</div>\n      </a>\n    </li>\n    <li class=\"tab-item friends users\">\n      <a href=\"#/friends\">\n        <i class=\"icon-group icon-2x\"></i>\n        <div class=\"tab-label\">My friends</div>\n      </a>\n    </li>\n    <li class=\"tab-item profile\">\n      <a href=\"#/profile\">\n        <i class=\"icon-user icon-2x\"></i>\n        <div class=\"tab-label\">Me</div>\n      </a>\n    </li>\n  </ul>\n</nav>\n";
   };
 
 this["Hull"]["templates"]["app/new_picture"] = function (Handlebars,depth0,helpers,partials,data) {
@@ -625,7 +625,11 @@ function program5(depth0,data) {
   if (stack2 = helpers.id) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.id; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "/share\" class=\"\"> Share \n          <i class=\"icon-share-alt\"> </i>\n        </a>\n      </li>\n      <li class=\"tab-item\">\n        <a href=\"#\">\n          <div data-hull-widget=\"uload\"></div>\n          <i class=\"icon-camera icon-2x\"></i>\n          <div class=\"tab-label\">New picture</div>\n        </a>\n      </li>      \n    </ul>\n  </div>\n</li>\n";
+    + "/share\" class=\"\"> Share \n          <i class=\"icon-share-alt\"> </i>\n        </a>\n      </li>\n      <li class=\"tab-item\">\n        <a href=\"#\">\n          <div data-hull-widget=\"uload\" data-hull-id=";
+  if (stack2 = helpers.id) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
+  else { stack2 = depth0.id; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  buffer += escapeExpression(stack2)
+    + "></div>\n          <i class=\"icon-camera icon-2x\"></i>\n          <div class=\"tab-label\">New picture</div>\n        </a>\n      </li>      \n    </ul>\n  </div>\n</li>\n";
   return buffer;
   };
 
@@ -678,6 +682,61 @@ function program1(depth0,data) {
   }
 
   stack1 = helpers['if'].call(depth0, depth0.picture, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;
+  };
+
+this["Hull"]["templates"]["uload/file_single"] = function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<span class=\"btn btn-success fileinput-button\">\n  <i class=\"icon-plus icon-white\"></i>\n  <input type=\"file\" name=\"file\" accept=\"image/*\" capture=\"camera\">\n</span>\n";
+  };
+
+this["Hull"]["templates"]["uload/upload"] = function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, stack2, options;
+  buffer += "\n  <form action=\"";
+  if (stack1 = helpers.url) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.url; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" method=\"post\" enctype=\"multipart/form-data\" class=\"hull_upload\">\n\n    ";
+  options = {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data};
+  stack2 = ((stack1 = helpers.key_value || depth0.key_value),stack1 ? stack1.call(depth0, depth0.params, options) : helperMissing.call(depth0, "key_value", depth0.params, options));
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "\n\n    <div class=\"dropzone well hidden-phone hidden-phone-tablet\" height=\"100px;\" width=\"100px;\">Drop an image here</div>\n\n    <input type=\"hidden\" name=\"Filename\" value=\"\"/>\n    <input type=\"hidden\" name=\"Content-Type\" value=\"\"/>\n    <input type=\"hidden\" name=\"name\" value=\"\"/>\n\n    <div class=\"fileupload-buttonbar row-fluid\">\n      <div class='span12'>\n        ";
+  stack2 = self.invokePartial(partials['uload.file_single'], 'uload.file_single', depth0, helpers, partials, data);
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "\n      </div>\n    </div>\n\n    <div class=\"fileupload-progress fade row-fluid\">\n      <div class='span12'>\n        <div class=\"progress progress-success progress-striped active\" role=\"progressbar\" aria-valuemin=\"0\" aria-valuemax=\"100\">\n          <div class=\"bar\" style=\"width:0%;\"></div>\n        </div>\n        <div class=\"progress-extended\">&nbsp;</div>\n      </div>\n    </div>\n\n    <div class='error'></div>\n    <div class='filescontainer'></div>\n  </form>\n";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n      <input type=\"hidden\" name=\"";
+  if (stack1 = helpers.key) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.key; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" value=\"";
+  if (stack1 = helpers.value) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.value; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\"/>\n    ";
+  return buffer;
+  }
+
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
+  if (stack1 = helpers.upload_policy) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0.upload_policy; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (!helpers.upload_policy) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n";
   return buffer;

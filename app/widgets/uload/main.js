@@ -24,7 +24,7 @@
  * - `hull.upload.progress`: Triggered when an upload is in progress. The total amount of data as well as the current amount of data transfered are available as a listener parameter.
  * - `hull.upload.done`: Triggered when an upload has finished. References to the uploadded files are available in an Array as the first parameter to the listeners.
  */
-Hull.define(['jquery.fileupload'], {
+Hull.widget('uload', {
   type: 'Hull',
 
   templates: [ 'upload', 'file_single' ],
