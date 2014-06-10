@@ -280,6 +280,37 @@ function program5(depth0,data) {
   return buffer;
   };
 
+this["Hull"]["templates"]["follow_user/main"] = function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, stack2, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n  ";
+  stack1 = helpers['if'].call(depth0, depth0.following, {hash:{},inverse:self.program(4, program4, data),fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  
+  return "\n  <button class=\"button button-positive\" data-hull-action=\"toggleFollow\">Unfollow</button>\n  ";
+  }
+
+function program4(depth0,data) {
+  
+  
+  return "\n  <button class=\"button button-negative\" data-hull-action=\"toggleFollow\">Follow</button>\n  ";
+  }
+
+  stack2 = helpers['if'].call(depth0, ((stack1 = depth0.options),stack1 == null || stack1 === false ? stack1 : stack1.id), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack2 || stack2 === 0) { return stack2; }
+  else { return ''; }
+  };
+
 this["Hull"]["templates"]["friends/friends"] = function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -514,7 +545,7 @@ function program1(depth0,data) {
   else { stack1 = depth0.pictures; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   if (!helpers.pictures) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</ul>\n\n";
+  buffer += "\n  <li>\n    <button class=\"button\" data-hull-action=\"more\">Load more</button>\n  </li>\n</ul>\n\n";
   stack1 = helpers['if'].call(depth0, depth0.single_picture_id, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n";
@@ -637,10 +668,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
   buffer += "<div class=\"profile island\">\n  <div class=\"author\">\n    <div class=\"media cf\">\n      <div class=\"img author-picture\">\n        <img src=\""
     + escapeExpression(((stack1 = ((stack1 = depth0.user),stack1 == null || stack1 === false ? stack1 : stack1.picture)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">\n      </div>\n      <div class=\"bd author-metas\">\n\n        <h3 class=\"author-title\">"
+    + "\">\n      </div>\n      <div class=\"bd author-metas\">\n        <div data-hull-widget=\"follow_user\" data-hull-id=\""
+    + escapeExpression(((stack1 = ((stack1 = depth0.user),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" class=\"pull-right\"></div>\n\n        <h3 class=\"author-title\">"
     + escapeExpression(((stack1 = ((stack1 = depth0.user),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</h3>\n\n        "
-    + "\n        <h4 class=\"author-location\">Paris, France</h4>\n\n        "
     + "\n        <h4 class=\"author-updated\">";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.fromNow || depth0.fromNow),stack1 ? stack1.call(depth0, ((stack1 = depth0.user),stack1 == null || stack1 === false ? stack1 : stack1.created_at), options) : helperMissing.call(depth0, "fromNow", ((stack1 = depth0.user),stack1 == null || stack1 === false ? stack1 : stack1.created_at), options)))

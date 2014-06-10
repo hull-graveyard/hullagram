@@ -156,6 +156,41 @@ Hull.widget('comment', {
 //--------
 
 
+Hull.component('follow_user', {
+
+  templates: ['main'],
+
+  datasources: {
+    following: function() {
+      if (this.id) {
+        return this.api("following/" + this.id);
+      }
+    },
+    user: ":id"
+  },
+
+  beforeRender: function(data) {
+    this.isFollowing = data.following;
+  },
+
+  actions: {
+    toggleFollow: function() {
+      var self = this, verb = "put";
+      if (this.isFollowing) {
+        verb = "delete";
+      }
+      this.api("following/" + this.id, verb).then(function() {
+        self.render();
+      })
+    }
+  }
+});
+
+
+
+//--------
+
+
 /**
  *
  * ## friends list
@@ -545,7 +580,8 @@ Hull.widget('pictures', {
       return this.api('app/activity', {
         limit: 10,
         where: where,
-        order_by: 'created_at DESC'
+        order_by: 'created_at DESC',
+        page: (this.options.page || 1)
       });
     },
 
@@ -560,6 +596,10 @@ Hull.widget('pictures', {
   actions: {
     back: function() {
       this.sandbox.emit('hullagram.back');
+    },
+    more: function() {
+      this.options.page = (this.options.page || 1) + 1
+      this.render();
     }
   },
 
