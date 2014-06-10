@@ -32,7 +32,8 @@ Hull.widget('pictures', {
       return this.api('app/activity', {
         limit: 10,
         where: where,
-        order_by: 'created_at DESC'
+        order_by: 'created_at DESC',
+        page: (this.options.page || 1)
       });
     },
 
@@ -47,6 +48,10 @@ Hull.widget('pictures', {
   actions: {
     back: function() {
       this.sandbox.emit('hullagram.back');
+    },
+    more: function() {
+      this.options.page = (this.options.page || 1) + 1
+      this.render();
     }
   },
 
