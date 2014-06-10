@@ -2,7 +2,7 @@
   "name": "Hullagram",
   "version": "0.1.0",
   "dependencies": {
-    "ratchet": "*",
-    "font-awesome": "*"
+    "ratchet": "1.0.2",
+    "font-awesome": "3.2.1"
   }
 }
