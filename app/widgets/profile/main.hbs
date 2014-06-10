@@ -5,11 +5,9 @@
         <img src="{{user.picture}}">
       </div>
       <div class="bd author-metas">
+        <div data-hull-widget="follow_user" data-hull-id="{{user.id}}" class="pull-right"></div>
 
         <h3 class="author-title">{{user.name}}</h3>
-
-        {{! FIXME: use the real user location from its twitter profile info }}
-        <h4 class="author-location">Paris, France</h4>
 
         {{! 'fromNow' is a custom Handlebars helper distributed with hull-js }}
         <h4 class="author-updated">{{fromNow user.created_at}}</h4>
